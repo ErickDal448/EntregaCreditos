@@ -170,12 +170,12 @@
                             </script>
                         </div>
                         <div class="mb-3">
-                            <label for="FormEventoDescripcion" class="form-label"> Descripción del evento </label>
+                            <label for="FormEventoInfo" class="form-label"> Descripción del evento </label>
                             <input type="text" class="form-control" id="FormEventoDescripcion" placeholder="Descripción">
                         </div>
                         <div class="mb-3">
-                            <label for="FormEventoDescripcion" class="form-label"> Mapa del evento </label>
-                            <input type="text" class="form-control" id="FormEventoDescripcion" placeholder="Ingrese el link de googleMaps del lugar">
+                            <label for="FormEventoInfo" class="form-label"> Mapa del evento </label>
+                            <input type="text" class="form-control" id="FormEventoMapa" placeholder="Ingrese el link de googleMaps del lugar">
                         </div>
                         <div class="mb-3">
                             <label for="FormEventoFecha" class="form-label"> Fecha </label>
@@ -188,7 +188,7 @@
                             <label for="FormEventoDescripcion" class="form-label"> Cantidad Creditos </label>
                             <input type="number" step="0.01" min="0" class="form-control" id="FormCantidadCreditos" placeholder="0 C.">
                         </div>
-
+ 
                         <script>
                             const inputElement = document.getElementById('FormCantidadCreditos');
 
@@ -305,6 +305,7 @@
 
    
    <script src="js/functions.js"></script>
+   
    <script>
     let SelectElement = document.getElementById('SeleccionFiltros');
     SelectElement.addEventListener("change", function() {
@@ -403,6 +404,8 @@
             element.style.display = "none";
             }
             document.getElementById("card-lista-eventos").style.display = "flex";
+            
+            document.getElementById("filtros").style.display = "none";
 
             // Actualizar el contenido de la sección con la información detallada del evento
             document.getElementById("EventoEnlace-mapa").href = evento[0].mapa;
@@ -411,21 +414,57 @@
             document.getElementById("EventoTipo").textContent = evento[0].nombreTc;
             document.getElementById("EventoDescripcion").textContent = evento[0].descripcion;
             document.getElementById("EventoFecha").value = evento[0].fecha;
-
+            
         });
     }
-</script>
+    </script> 
+    <script>
+        const btnEnviar = document.querySelector('#BtnEnviarEvento');
+        const inputTitulo = document.querySelector('#FormEventoTitulo');
+        const selectTipoEvento = document.querySelector('#FormEventoTipoEvento');
+        const inputDescripcion = document.querySelector('#FormEventoDescripcion');
+        const inputMapa = document.querySelector('#FormEventoMapa');
+        const inputFecha = document.querySelector('#FormEventoFecha');
+        const inputCreditos = document.querySelector('#FormCantidadCreditos');
+
+        btnEnviar.addEventListener('click', () => {
+            const data = {
+                idEvento: 0,
+                nombre: inputTitulo.value,
+                idTipo: selectTipoEvento.value,
+                nombreTc: selectTipoEvento.options[selectTipoEvento.selectedIndex].text,
+                descripcion: inputDescripcion.value,
+                mapa: inputMapa.value,
+                fecha: inputFecha.value,
+                estado: 'string',
+                creditos: inputCreditos.value,
+                institucion: (localStorage.getItem("UserInstitucion"))
+            };
+
+            fetch('https://localhost:7220/api/EventosInfoPost/CrearEvento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta de la API
+                regresarPost()
+            });
+        });
+    </script>  
    <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
    <script>
-        function MostrarInfo(){
-            document.getElementById("card-lista-eventosSimple").style.display = "none";
-            document.getElementById("card-lista-eventos").style.display = "flex";
-            document.getElementById("filtros").style.display = "none";
-        }  
         function regresar(){
             document.getElementById("card-lista-eventosSimple").style.display = "flex";
             document.getElementById("card-lista-eventos").style.display = "none";
             document.getElementById("filtros").style.display = "block";
+            let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+            for (let element of listaSimpleElements) {
+            element.style.display = "block";
+            }
         }
         function MostrarPost(){
             document.getElementById("card-lista-eventosSimple").style.display = "none";
