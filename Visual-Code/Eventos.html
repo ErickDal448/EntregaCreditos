@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos-Eventos</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="own-style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    </head>
+<body>
+    <header>
+        <!-- navbar resposiva -->
+       <nav class="navbar bg-cabeza bg-body-tertiary">
+           <div class="container-fluid" style="flex-wrap: nowrap;">
+               <a class="navbar-brand  col-md-6" href="#" id="cabeza-a">
+                   <img src="Imagenes/LogoUAS.png" alt="Logo" id="logoUAS">
+                   <div class="p-logoUAS">
+                       <p>Módulo de créditos</p><p>Extracurriculares</p>
+                   </div>           
+               </a>
+               <div class="nav-item col-md-6" id="div-menu" >
+                <ul class="navbar-nav me-auto mb-lg-0 col-md-12" ID="header-lista" >
+                    <li class="nav-text">
+                        <a class="nav-link" href="Inicio.html">INICIO</a>
+                    </li>
+                    <li class="nav-text">
+                        <a class="nav-link text-pulsar">EVENTOS</a>
+                    </li>
+                    <li class="nav-text">
+                        <a class="nav-link" href="Certificados.html">CERTIFICADOS</a>
+                    </li>
+                    <li class="nav-text">
+                        <a class="nav-link" href="Medallas.html">MEDALLAS</a>
+                    </li>
+                    <li class="nav-text nav-fondo">
+                        <a class="nav-link" href="Perfil.html">PERFIL</a>
+                    </li>
+                    <li>
+                        <a href="Perfil.html">
+                            <img src="Imagenes/IconPerfil.png" alt="Icono de perfil">
+                        </a>
+                    </li>
+                </ul>
+                <li class="nav-item dropdown  col-md-12" id="li-dropdown">
+                    <a class="nav-link dropdown-toggle text-fondo" id="Dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="navbar-toggler-icon"></span></a>
+                    <ul class="dropdown-menu" id="drop-menu">
+                        <li><a class="dropdown-item" href="Inicio.html">INICIO</a></li>
+                        <li><a class="dropdown-item disabled text-fondo bg-pulsar">EVENTOS</a></li>
+                        <li><a class="dropdown-item" href="Certificados.html">CERTIFICADOS</a></li>
+                        <li><a class="dropdown-item" href="Medallas.html">MEDALLAS</a></li>
+                        <li><a class="dropdown-item" href="Perfil.html">PERFIL</a></li>
+                    </ul>
+                </li>
+                </div>
+            </div>
+        </nav>
+   </header>
+   <section class="container-fluid" id="section-info-inicio">
+        <div class="card" id="card-eventos">
+            <section class="filtros">
+                  <select class="form-select form-select-lg mb-3 bg-pulsar text-fondo" aria-label=".form-select-lg example" style="font-weight: 600; border-radius: 60px;" id="SeleccionFiltros">
+                    <option value="0">Favor de seleccionar filtro</option>
+                    <option value="1">Eventos Proximos</option>
+                    <option value="2">Eventos Pasados</option>
+                    <option value="3">Eventos Realizados</option>
+                  </select>
+            </section>
+
+            <section class="Eventos-ListaSimple" style="display: none">
+                <div class="card" id="card-lista-eventosSimple">
+                    <div class="col-md-11" data-id="valorID" id="lista-info-eventoSimple">
+                        <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item VariablesEventos text-break">{Titulo}123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Fecha</li>
+                            <li class="list-group-item VariablesEventos text-break">20/05/23<br>16:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="EventosTablas"  style="display: flex;">
+                <div class="card" id="card-lista-eventos" style="display: none;">
+                    <div class="mapa-creditos col-md-2">
+                        <button class="btn btn-cancelar text-fondo" id="btnReturn" onclick="regresar()" style="border-radius: 40px; width: 90px; height: 60px; margin-top: 30px;"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16" style="width: 40px; height: 40px;">
+                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                            </svg>
+                        </button>
+                        <a href="" target="_blank" id="EventoEnlace-mapa">
+                            <button class="btn btn-cabeza" id="BotonMapa" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                </svg>
+                            </button>
+                        </a>
+                        <div class="badge bg-pulsar text-wrap font-weight-bold fs-6" style="margin-bottom: 20px; border-radius: 50px;" id="EventoCreditos">
+                            Creditos: 0.5C.
+                        </div>
+                    </div>
+                    
+
+                    <div class="col-md-9" id="lista-info-evento">
+                        <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos ">Titulo</li>
+                            <li class="list-group-item VariablesEventos" Id="EventoTitulo">{Titulo}</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item AtributosEventos">Tipo</li>
+                            <li class="list-group-item VariablesEventos text-break" Id="EventoTipo">{Tipo}</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item AtributosEventos">Descripción</li>
+                            <li class="list-group-item VariablesEventos text-break" id="EventoDescripcion">{Descripcion} 123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item AtributosEventos">Fecha</li>
+                            <li class="list-group-item VariablesEventos">
+                                <input type="datetime-local" class="form-control" id="EventoFecha" name="fecha-hora" readonly>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>  
+   </section>
+   <script>
+        let SelectElement = document.getElementById('SeleccionFiltros');
+        SelectElement.addEventListener("change", function() {
+            //Obtener filtro
+            let filtro = SelectElement.value;
+            if(filtro == "1" || filtro == "2"){
+                if(filtro == "1"){
+                    filtro = "EventosProximos";
+                }
+                if(filtro == "2"){
+                    filtro = "EventosPasados";
+                }
+                // Obtener los datos de los eventos desde la API utilizando el filtro seleccionado
+                fetch(`https://localhost:7220/api/` + filtro + `/api/` + filtro + `?institucion=${encodeURIComponent(localStorage.getItem('UserInstitucion'))}`)
+                .then(response => response.json())
+                .then(eventos => {
+                    // Generar el contenido de la sección Eventos-ListaSimple
+                    let eventosListaSimple = document.querySelector(".Eventos-ListaSimple");
+                    eventosListaSimple.style.display = "block";
+                    eventosListaSimple.innerHTML = "";
+
+                    for (let evento of eventos) {
+                        let eventoElement = document.createElement("div");
+                        eventoElement.className = "card";
+                        eventoElement.id = "card-lista-eventosSimple";
+                        eventoElement.onclick = function() {
+                        MostrarInfo(evento.idEvento);
+                        console.log(evento.idEvento);
+                        };
+                        eventoElement.innerHTML = `
+                        <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
+                            <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Fecha</li>
+                            <li class="list-group-item VariablesEventos text-break">${evento.fecha}</li>
+                            </ul>
+                        </div>
+                        `;
+                        eventosListaSimple.appendChild(eventoElement);
+                    }
+                });
+            }
+            if (filtro == "3"){
+                fetch(`https://localhost:7220/api/EventosRealizados/api/EventosRealizados?NumUsuario=${encodeURIComponent(localStorage.getItem('UserNumCuenta'))}`)
+                .then(response => response.json())
+                .then(eventos => {
+                    // Generar el contenido de la sección Eventos-ListaSimple
+                    let eventosListaSimple = document.querySelector(".Eventos-ListaSimple");
+                    eventosListaSimple.style.display = "block";
+                    eventosListaSimple.innerHTML = "";
+
+                    for (let evento of eventos) {
+                        let eventoElement = document.createElement("div");
+                        eventoElement.className = "card";
+                        eventoElement.id = "card-lista-eventosSimple";
+                        eventoElement.onclick = function() {
+                        MostrarInfo(evento.idEvento);
+                        console.log(evento.idEvento);
+                        };
+                        eventoElement.innerHTML = `
+                        <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
+                            <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal ">
+                            <li class="list-group-item AtributosEventos">Fecha</li>
+                            <li class="list-group-item VariablesEventos text-break">${evento.fecha}</li>
+                            </ul>
+                        </div>
+                        `;
+                        eventosListaSimple.appendChild(eventoElement);
+                    }
+                });
+
+            }
+            if(filtro == "0"){
+                let eventosListaSimple = document.querySelector(".Eventos-ListaSimple");
+                    eventosListaSimple.style.display = "none";
+            }
+        });
+        function MostrarInfo(idEvento) {
+        // Obtener los detalles del evento con el ID especificado desde la API
+        console.log(idEvento + " Check");
+        fetch("https://localhost:7220/api/InfoEventos/api/EventosInfo?IdEvento=" + idEvento)
+            .then(response => response.json())
+            .then(evento => {
+
+                console.log(evento);
+                // Mostrar la información detallada del evento
+                let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+                for (let element of listaSimpleElements) {
+                element.style.display = "none";
+                }
+                document.getElementById("card-lista-eventos").style.display = "flex";
+
+                // Actualizar el contenido de la sección con la información detallada del evento
+                document.getElementById("EventoEnlace-mapa").href = evento[0].mapa;
+                document.getElementById("EventoCreditos").textContent = "Creditos= " + evento[0].creditos;
+                document.getElementById("EventoTitulo").textContent = evento[0].nombre;
+                document.getElementById("EventoTipo").textContent = evento[0].nombreTc;
+                document.getElementById("EventoDescripcion").textContent = evento[0].descripcion;
+                document.getElementById("EventoFecha").value = evento[0].fecha;
+
+            });
+        }
+   </script>
+
+   <script src="js/functions.js"></script>
+   <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
+   <script>  
+        function regresar(){
+            document.getElementById("card-lista-eventosSimple").style.display = "flex";
+            document.getElementById("card-lista-eventos").style.display = "none";
+            let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+            for (let element of listaSimpleElements) {
+            element.style.display = "block";
+            }
+        }
+   </script>
+</body>
+</html>

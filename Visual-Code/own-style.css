@@ -1,0 +1,571 @@
+/* clases personalizadas */
+.btn-normal {
+    padding: 5px 26px;
+    font-size: 24px;
+}
+.btn-small{
+    font-size: 20px;
+    width: 250px;
+}
+
+/*Entrar*/
+header{
+    font-family: 'Source Sans 3', sans-serif;
+}
+#cabeza-a{
+    align-items: center;
+    display: flex;
+    font-size:24px;
+    color: #ffffff;
+}
+#logoUAS{
+    width: 115px;
+    height: 165px;
+}
+#cabeza-a p{
+    font-size:32px;
+    margin-bottom:-10px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
+#header-lista{
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+}
+#header-lista li{
+    padding-right: 30px;
+    padding-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+#header-lista li a{
+    padding-top: 20px;
+}
+#section-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card{
+    width: 95%;
+    background-color: #A1D8D5;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 60px;
+    box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.25);
+}
+.card-body{
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    padding: 5%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.card-body h5{
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+.card-body p{
+    text-align: center;
+}
+
+/*Iniciar Sesion*/
+#card-iniciarsesion{
+    flex-direction: row;
+}
+#section-info-iniciarsesion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-iniciarsesion{
+    width: 60%;
+    padding: 5% 5%;
+}
+input[type="text"], input[type="password"]{
+    font-weight: bold;
+    font-style: italic;
+    padding-left: 8%;
+    font-size: 20px;
+  }
+  input[type="checkbox"]:checked {
+    background-color: #E3C351;
+  }
+  input[type="checkbox"] {
+    background-color: #CBCBCB;
+  }
+  .div-enviarsesion{
+    display: flex; 
+    justify-content: flex-end;
+  }
+
+
+  /* Inicio */
+  #section-info-inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .TotalP{
+    position: relative;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  #card-iniciarsesion-1{
+    width: 40%;
+    margin-top: 0;
+    justify-content: center;
+    padding: 1% 5%;
+    text-align: center;
+    font-size: 50px;
+  }
+  #card-iniciarsesion-2{
+    width: 80%;
+    justify-content: center;
+    padding: 2% 5%;
+    text-align: center;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .SeccionMedallas{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #BotonMedalla{
+    border-radius: 360px;
+    box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.25);
+  }
+  .divprogress{
+    width: 90%;
+  }
+  .progress{
+    margin: 5px 5%;
+    height: 5px;
+    box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.25);
+    margin-bottom: 15px;
+  }
+  #card-iniciarsesion-3{
+    width: 95%;
+    margin-top: 0%;
+    justify-content: center;
+    padding: 2% 5%;
+    text-align: center;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .idTablaCreditos, .UnidadesTabla, .MaxTablaCreditos {
+    padding: 3% 0px;
+    }
+    .numerosTableId, .numerosTableUni, .numerosTableMax, .NombresTipos{
+        color: #ffffff;
+        font-weight: 400;
+    }
+    /*Eventos*/
+    #card-eventos{
+        Padding: 2% 5%;
+    }
+    .filtros{
+        margin-top: 30px;
+    }
+    #card-lista-eventosSimple{
+        margin: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    #lista-info-eventoSimple{
+        margin: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    #card-lista-eventos{
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .mapa-creditos{
+        display: flex;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 20px;
+    }
+    #EventoEnlace-mapa{
+        margin:20px;  
+    }
+    #EventoEnlace-mapa button{
+        border-radius: 40px;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+    }
+    #EventoEnlace-mapa svg{
+        width: 50%;
+        height: 50%;
+    }
+    #lista-info-evento{
+        margin: 30px;
+    }
+    .AtributosEventos{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background-color: #E3C351;
+        color: #ffffff;
+        font-weight: bold;
+        width: 160px;
+    }
+    .VariablesEventos{
+        background-color: antiquewhite;
+        width: 100%;
+    }
+
+    /* Certificados */
+    .filtrosCertificado{
+        margin-top: 30px;
+        display: flex; 
+        align-items: flex-start;
+        flex-direction: row; 
+        justify-content: space-around;
+    }
+    .filtrosCertificado select{
+        width: 50%;
+    }
+    #btnEnviar{
+        border-radius: 60px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .divBtnEditar{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    #btnEditar{
+        border-radius: 60px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    #enlace-certificado{
+        margin:20px;  
+    }
+    #enlace-certificado button{
+        border-radius: 40px;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+    }
+    #enlace-certificado svg{
+        width: 70%;
+        height: 70%;
+    }
+    .AtributosCertificados{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background-color: #E3C351;
+        color: #ffffff;
+        font-weight: bold;
+        width: 100px;
+    }
+    .VariablesCertificados{
+        background-color: antiquewhite;
+    }
+    .divBtnSalirEnviarCert{
+        position: relative;
+        bottom: 20px;
+        right: 20px;
+    }
+    #btnExitPostCert{
+        position: relative;
+        border-radius: 60px;
+        border-color: black;
+        border-width: 2px;
+    }
+    .divBtnSendEnviarCert{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .divBtnSendEnviarCert button{
+        font-weight: bold;
+        font-size: 25px;
+        border-radius: 50px;
+    }
+
+    /* Perfil */ 
+    #card-ver-Perfil{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .divImgPerfil{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .datosPerfil{
+        padding: 40px;
+    }
+    .datosPerfil input{
+        border-radius: 40px;
+    }
+    .divBtnCerrarSesion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        
+    }
+    #btnCerrarSesion{
+        border-radius: 50px;
+        width: 250px;
+        font-size: 20px;
+        font-weight: bold; 
+        box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.25);
+    }
+    .divBtnCerrarAlert{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .divBtnCerrarAlert button{
+        border-radius: 50px;
+        font-size: 30px;
+        width: 250px;
+        margin-top: 50px;
+        margin-bottom: 40px;
+        font-weight: bond;
+    }
+
+    /* Editor */
+    /* InicioEditor */
+    #card-Editor-Inicio{
+        display: flex;
+        align-items: center;
+        padding: 30px;
+    }
+    #card-Editor-Inicio h4{
+        margin-bottom: 30px      ;
+    }
+    #card-Editor-Inicio section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    #card-Editor-Inicio div{
+        display: flex;
+        flex-direction: column;
+        margin: 25px 5%;
+    }
+
+    /* Eventos Editor */
+    #card-eventos-post{
+        padding: 60px;
+    }
+    #card-eventos-post input{
+        background-color: antiquewhite;
+        border-radius: 40px;
+        border-color: #E3C351;
+    }
+    #card-eventos-post select{
+        background-color: antiquewhite;
+        border-radius: 40px;
+        border-color: #E3C351;
+        color: grey;
+        font-weight: bold;
+    }
+  /* Media resposive */
+@media (min-width: 1139px){
+    #Dropdown{
+        display: none;
+    }
+    #li-dropdown{
+        display: none;
+    }
+}
+@media (max-width: 1139px) {
+    #div-menu{
+        width: 190px;
+    }
+
+    #header-lista{
+        display: none;
+    }
+    
+    #li-dropdown{
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+    }
+    #Dropdown{
+        font-size: 32px;
+        font-weight: bold;
+        padding-right: 10%;
+    }
+    #drop-menu{
+        background-color: #E3C351;
+        border-radius: 20px;
+        font-size: 25px;
+        box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.25);
+        height: 400px;
+    }
+
+    #drop-menu li{
+        background-color: #CBCBCB;
+        font-weight: bold;
+        height: 70px;
+        position: relative;
+        top: 20px;
+        align-items: center;
+        display: grid;
+    }
+    #drop-menu:hover{
+        color:#E3C351;
+    }
+
+    /* Inicio */
+    #card-iniciarsesion-2{
+        width: 90%;
+        justify-content: center;
+        padding: 2% 5%;
+        text-align: center;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 60px;
+        margin-bottom: 20px;
+    }
+    #card-iniciarsesion-3{
+        width: 90%;
+        justify-content: center;
+        padding: 2% 5%;
+        text-align: center;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 60px;
+        margin-bottom: 20px;
+    }
+   /* Eventos */
+   #card-lista-eventos {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    #lista-info-eventoSimple {
+        display: inline-flex;
+        flex-direction: column;
+        }
+    /* Certificados */
+    .filtrosCertificado{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .filtrosCertificado select{
+        width: 80%;
+        margin-top: 15px;
+    }
+    .divBtnEditar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+    #formGroupExampleInput, #inputState{
+        border-radius: 50px;
+        padding-left: 40px;
+        font-weight: bold;
+    }
+
+    /* Perfil */
+    #card-ver-Perfil{
+        flex-direction: column;
+    }
+}
+@media (max-width: 580px){
+    .p-logoUAS{
+        display: none;
+    }
+    .card-body img{
+        display: none;
+    }
+
+    /* iniciar sesion*/
+    #imagen-busqueda{
+        display: none;
+    }
+    #card-iniciarsesion{
+        justify-content: center;
+    }
+    .div-enviarsesion{
+        justify-content: center;
+    }
+
+    /* Inicio */
+    .idTablaCreditos, .numerosTableUni, .numerosTableId{
+        display: none;;
+    }
+
+    /* Eventos */
+    .mapa-creditos{
+        margin-left: 0px;
+    }
+    .list-group-horizontal {
+        flex-direction: column;
+    }
+    .AtributosEventos{
+        width: auto;
+    }
+
+    /* Certificados */
+    .AtributosCertificados{
+        width: auto;
+    }
+
+    /* Inicio Editor */
+    #card-iniciarsesion-1{
+        width: 90%;
+    }
+    /* Evento Editor */
+    #card-eventos-post img{
+        display: none;
+    }
+}
+@media (max-width: 480px){
+    /* Inicio */
+    .UnidadesTabla{
+        display: none;;
+    } 
+}
+@media (max-width: 330px){
+    html{
+        width: 400px;
+    }
+}

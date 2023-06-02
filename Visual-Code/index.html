@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos-Entrar</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="own-style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    <script>
+        // let portSwager = prompt('Por favor ingrese el puerto a utilizar de swagger:');
+        // window.myPort = portSwagger;
+    </script>
+</head>
+<body>
+    
+    <header>
+         <!-- navbar resposiva -->
+        <nav class="navbar bg-cabeza bg-body-tertiary">
+            <div class="container-fluid" style="flex-wrap: nowrap;">
+                <a class="navbar-brand  col-md-6" href="#" id="cabeza-a">
+                    <img src="Imagenes/LogoUAS.png" alt="Logo" id="logoUAS">
+                    <div class="p-logoUAS">
+                        <p>Módulo de créditos</p><p>Extracurriculares</p>
+                    </div>           
+                </a>
+                <div class="nav-item  col-md-6" id="div-menu">
+                    <ul class="navbar-nav me-auto mb-lg-0  col-md-12" ID="header-lista" >
+                        <li class="nav-text nav-fondo">
+                            <a class="nav-link" href="IniciarSesion.html">INICIAR SESIÓN</a>
+                        </li>
+                        <li>
+                            <a href="IniciarSesion.html">
+                                <img src="Imagenes/IconPerfil.png" alt="Icono de perfil">
+                            </a>
+                        </li>
+                    </ul>
+                    <li class="nav-item dropdown  col-md-12" id="li-dropdown">
+                        <a class="nav-link dropdown-toggle text-fondo" id="Dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="navbar-toggler-icon"></span></a>
+                        <ul class="dropdown-menu" id="drop-menu" style="height:190px;">
+                            <li><a class="dropdown-item disabled text-fondo bg-pulsar"> ENTRAR </a></li>
+                            <li><a class="dropdown-item" href="IniciarSesion.html">INICIAR SESIÓN</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container-fluid" id="section-info">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bienvenido a la página de créditos extracurriculares</h5>
+              <p class="card-text"> Para ver tus créditos, favor de iniciar sesión.</p>
+              <img src="Imagenes/imgInicio.png" class="card-img-top" alt="img inicio" style="padding-left:5%;padding-right:5%;">
+            </div>
+        </div>
+    </section>
+    <script src="js/functions.js"></script>
+    
+    <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
+</body>
+</html>

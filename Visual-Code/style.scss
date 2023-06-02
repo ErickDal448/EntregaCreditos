@@ -1,0 +1,50 @@
+//Importar funciones de cambios para el css
+@import "Bootstrap/node_modules/bootstrap/scss/functions";
+@import "Bootstrap/node_modules/bootstrap/scss/variables";
+@import "Bootstrap/node_modules/bootstrap/scss/mixins"; 
+
+//Crear tus propios temas de colores
+$custom-colors: (
+    "pulsar": #E3C351,
+    "fondo": #ffffff,
+    "cabeza": #0F77A4,
+    "recuadro-fondo": #A1D8D5,
+    "recuadro-front": #CBCBCB,
+    "cancelar": #EE8F89,
+    "barra": #E87300,
+    "hover": #68793f
+);
+
+//Importar los temas creados
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+//Crear customizacion de font
+$custom-font-weights: (
+  "light": 300,
+  "normal": 400,
+  "bold": 700,
+  "extra-bold": 900
+);
+//agregarlas a la clase para su uso en codigo
+@each $name, $weight in $custom-font-weights {
+  .font-weight-#{$name} {
+    font-weight: $weight;
+  }
+}
+
+//Configuracion de resposividad de breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+//cambiar colores de navbar
+$navbar-light-color: #ffffff;
+$navbar-light-hover-color: #E3C351;
+
+//Importar todo al css
+@import "./Bootstrap/node_modules/bootstrap/scss/bootstrap.scss"

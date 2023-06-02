@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos-Inicio-Edicion</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="own-style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    
+    
+</head>
+<body>
+    <header>
+        <!-- navbar resposiva -->
+       <nav class="navbar bg-cabeza bg-body-tertiary">
+           <div class="container-fluid" style="flex-wrap: nowrap;">
+               <a class="navbar-brand  col-md-6" href="index.html" id="cabeza-a">
+                   <img src="Imagenes/LogoUAS.png" alt="Logo" id="logoUAS">
+                   <div class="p-logoUAS">
+                       <p>Módulo de créditos</p><p>Extracurriculares</p>
+                   </div>           
+               </a>
+               <div class="nav-item col-md-6" id="div-menu" >
+                <ul class="navbar-nav me-auto mb-lg-0 col-md-12" ID="header-lista" >
+                    <li class="nav-text">
+                        <a class="nav-link text-pulsar">INICIO</a>
+                    </li>
+                    <li class="nav-text">
+                        <a class="nav-link" href="EventosEditor.html">EVENTOS</a>
+                    </li>
+                    <li class="nav-text">
+                        <a class="nav-link" href="CertificadosEditor.html">CERTIFICADOS</a>
+                    </li>
+                    <li class="nav-text nav-fondo">
+                        <a class="nav-link" href="PerfilEditor.html">PERFIL</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="Imagenes/IconPerfil.png" alt="Icono de perfil">
+                        </a>
+                    </li>
+                </ul>
+                <li class="nav-item dropdown  col-md-12" id="li-dropdown">
+                    <a class="nav-link dropdown-toggle text-fondo" id="Dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="navbar-toggler-icon"></span></a>
+                    <ul class="dropdown-menu hover-hoever" id="drop-menu">
+                        <li><a class="dropdown-item disabled text-fondo bg-pulsar">INICIO</a></li>
+                        <li><a class="dropdown-item" href="EventosEditor.html">EVENTOS</a></li>
+                        <li><a class="dropdown-item" href="CertificadosEditor.html">CERTIFICADOS</a></li>
+                        <li><a class="dropdown-item" href="PerfilEditor.html">PERFIL</a></li>
+                    </ul>
+                </li>
+                </div>
+            </div>
+        </nav>
+   </header>
+
+   <section class="container-fluid" id="section-info-inicio">
+    <p class="TotalP" id="NumCuenta"></p>
+    <script>
+        var textNumero = document.getElementById('NumCuenta');
+        textNumero.textContent = "[" + localStorage.getItem('UserNumCuenta') + "]" + " Eres un:"
+    </script>
+    <div class="card bg-pulsar" id="card-iniciarsesion-1">
+        <p class="text-dark font-weight-bold fs-1" id="CreditosTotales">EDITOR.</p>
+    </div>
+
+    <div class="card bg-cabeza" id="card-Editor-Inicio">
+        <h4 id="institucionH4" style="color: azure; font-weight: 600;" class="color-fondo"></h4>
+        <script>
+            let h4Institucion = document.getElementById('institucionH4');
+            h4Institucion.textContent = localStorage.getItem('UserInstitucion');
+        </script>
+        <div class="card bg-cabeza" id="card-iniciarsesion-3">
+            <h4 class="text-fondo fs-10 font-weight-bold">¿Cómo se consiguen los creditos?</h4>
+            <table class="table class text-fondo" id="TablaCertificados">
+                <thead class="text-wrap bg-pulsar text-dark">
+                  <tr>
+                    <th scope="col" class="idTablaCreditos">#</th>
+                    <th scope="col" class="TiposTablaCreditos text-break">Tipos de creditos</th>
+                    <th scope="col"  class="UnidadesTabla">Unidades</th>
+                    <th scope="col"  class="MaxTablaCreditos">Máximo</th>
+                  </tr>
+                </thead>
+            </table>
+            <script src="js/functions.js"></script>
+            <script>
+                console.log("Si jalo");
+                console.log(localStorage.getItem('UserInstitucion'));
+                fetch(`https://localhost:7220/api/TablaCreditos/api/TablaCertificados?institucion=${encodeURIComponent(localStorage.getItem('UserInstitucion'))}`)
+                .then(response => response.json())
+                .then(data => {
+                // Obtener una referencia a la tabla
+                let table = document.getElementById('TablaCertificados');
+    
+                // Iterar sobre la lista de datos
+                data.forEach((item, index) => {
+                // Crear una nueva fila
+                let row = table.insertRow();
+    
+                // Crear celdas para cada columna
+                let cell1 = row.insertCell();
+                let cell2 = row.insertCell();
+                let cell3 = row.insertCell();
+                let cell4 = row.insertCell();
+    
+                  // Agregar clases a las celdas
+                cell1.classList.add('numerosTableId');
+                cell1.classList.add('bg-cabeza');
+                cell1.classList.add('color-fondo');
+    
+                cell2.classList.add('NombresTipos');
+                cell2.classList.add('bg-cabeza');
+    
+                cell3.classList.add('numerosTableUni');
+                cell3.classList.add('bg-cabeza');
+                cell3.classList.add('bg-cabeza');
+    
+                cell4.classList.add('numerosTableMax');
+                cell4.classList.add('bg-cabeza');
+                cell4.classList.add('bg-cabeza');
+                
+                // Llenar las celdas con los datos correspondientes
+                cell1.textContent = index + 1; // Número de línea
+                cell2.textContent = item.nombreTC;
+                cell3.textContent = item.creditosValor;
+                cell4.textContent = item.creditosMax;
+                });
+                })
+                .catch(error => {
+                console.error('Error:', error);
+                });
+    
+            </script>
+        </div>
+    </div>
+</section>
+<script src="js/functions.js"></script>
+<script> document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>'); </script>
+</body>
+</html>

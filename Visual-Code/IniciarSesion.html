@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos-IniciarSesión</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="own-style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    
+</head>
+<body>
+    <header>
+        <!-- navbar resposiva -->
+       <nav class="navbar bg-cabeza bg-body-tertiary">
+           <div class="container-fluid" style="flex-wrap: nowrap;">
+               <a class="navbar-brand  col-md-6" href="index.html" id="cabeza-a">
+                   <img src="Imagenes/LogoUAS.png" alt="Logo" id="logoUAS">
+                   <div class="p-logoUAS">
+                       <p>Módulo de créditos</p><p>Extracurriculares</p>
+                   </div>           
+               </a>
+               <div class="nav-item  col-md-6" id="div-menu">
+                   <ul class="navbar-nav me-auto mb-lg-0  col-md-12" ID="header-lista" >
+                       <li class="nav-text nav-fondo">
+                           <a class="nav-link text-pulsar" href="IniciarSesion.html">INICIAR SESIÓN</a>
+                       </li>
+                       <li>
+                           <a href="IniciarSesion.html">
+                               <img src="Imagenes/IconPerfil.png" alt="Icono de perfil">
+                           </a>
+                       </li>
+                   </ul>
+                   <li class="nav-item dropdown  col-md-12" id="li-dropdown">
+                       <a class="nav-link dropdown-toggle text-fondo" id="Dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="navbar-toggler-icon"></span></a>
+                       <ul class="dropdown-menu" id="drop-menu" style="height:190px;">
+                           <li><a class="dropdown-item" href="index.html">ENTRAR</a></li>
+                           <li><a class="dropdown-item disabled text-fondo bg-pulsar">INICIAR SESIÓN</a></li>
+                       </ul>
+                   </li>
+               </div>
+           </div>
+       </nav>
+   </header>
+
+    <section class="container-fluid" id="section-info-iniciarsesion">
+        <div class="card" id="card-iniciarsesion">
+            <div class="card-body-iniciarsesion col-md-6" id="imagen-busqueda" style="width: 40%;">
+              <img src="Imagenes/Busqueda sesion.png" class="card-img-top" alt="img inicio" style="padding: 5% 5%;width:100%; height: 100%;">
+            </div>
+
+            <form class="form-iniciarsesion col-md-6" >
+                <div class="mb-3">
+                  <label for="InputNumCuenta1" class="form-label" style="font-size: 24px;">NÚMERO DE CUENTA</label>
+                  <input type="text" class="form-control bg-recuadro-front text-cabeza" id="InputNumCuenta1" aria-describedby="NumeroCuenta" value="Número de cuenta" onfocus="handleInputFocusNum(this)" onblur="handleInputBlurNum(this)" style=" border: 1px solid #000000; box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px; ">
+                  <div id="emailHelp" class="form-text font-weight-bold text-fondo"  style="font-size: 20px">NO compartas tu número de cuenta.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="NIP1" class="form-label " style="font-size: 24px">NIP</label>
+                  <input type="text" class="form-control bg-recuadro-front text-cabeza" id="NIP1" value="NIP" onfocus="handleInputFocusNIP(this),handleCheckboxChange(document.getElementById('SeeNIP'))" onblur="handleInputBlurNIP(this)"  style="border: 1px solid #000000;box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px;">
+                </div>
+                <div class="mb-3 form-check form-switch" style="display: flex; align-items:center;">
+                    <input class="form-check-input border-dark control-label-dark" type="checkbox" role="switch" id="SeeNIP" onchange="handleCheckboxChange(this)" style="box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); height: 30px; width: 60px; transition: .5s;">
+                    <label class="form-check-label font-weight-bold" for="SeeNIP" style="padding-left: 5px;">Ver NIP</label>
+                </div>
+                <div class="div-enviarsesion" >
+                    <button class="btn btn-pulsar border-dark btn-normal" type="button" onclick="Validar()" style="box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px; " >INICIAR SESIÓN</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="js/functions.js"></script>
+    <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
+</body>
+</html>

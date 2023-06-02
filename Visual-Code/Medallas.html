@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos-Perfil</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="own-style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+
+    <script src="js/functions.js"></script>
+    <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
+</head>
+<body>
+    <header>
+        <!-- navbar resposiva -->
+       <nav class="navbar bg-cabeza bg-body-tertiary">
+           <div class="container-fluid" style="flex-wrap: nowrap;">
+               <a class="navbar-brand  col-md-6" href="index.html" id="cabeza-a">
+                   <img src="Imagenes/LogoUAS.png" alt="Logo" id="logoUAS">
+                   <div class="p-logoUAS">
+                       <p>Módulo de créditos</p><p>Extracurriculares</p>
+                   </div>           
+               </a>
+               <div class="nav-item col-md-6" id="div-menu" >
+                    <ul class="navbar-nav me-auto mb-lg-0 col-md-12" ID="header-lista" >
+                        <li class="nav-text">
+                            <a class="nav-link" href="Inicio.html">INICIO</a>
+                        </li>
+                        <li class="nav-text">
+                            <a class="nav-link" href="Eventos.html">EVENTOS</a>
+                        </li>
+                        <li class="nav-text">
+                            <a class="nav-link" href="Certificados.html">CERTIFICADOS</a>
+                        </li>
+                        <li class="nav-text">
+                            <a class="nav-link  text-pulsar">MEDALLAS</a>
+                        </li>
+                        <li class="nav-text nav-fondo">
+                            <a class="nav-link" href="Perfil.html">PERFIL</a>
+                        </li>
+                        <li>
+                            <img src="Imagenes/IconPerfil.png" alt="Icono de perfil">
+                        </li>
+                    </ul>
+                    <li class="nav-item dropdown  col-md-12" id="li-dropdown">
+                        <a class="nav-link dropdown-toggle text-fondo" id="Dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="navbar-toggler-icon"></span></a>
+                        <ul class="dropdown-menu" id="drop-menu">
+                            <li><a class="dropdown-item" href="Inicio.html">INICIO</a></li>
+                            <li><a class="dropdown-item" href="Eventos.html">EVENTOS</a></li>
+                            <li><a class="dropdown-item" href="Certificados.html">CERTIFICADOS</a></li>
+                            <li><a class="dropdown-item disabled text-fondo bg-pulsar">MEDALLAS</a></li>
+                            <li><a class="dropdown-item" href="Perfil.html">PERFIL</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </nav>
+   </header>
+
+   <section class="container-fluid" id="section-info-inicio">
+    
+   <div class="card" id="card-medallas-fondo" style="display: flex; align-items: center;">
+        <div class="card" id="card-medallas">
+            <section class="seccionMisMedallas" style="display: flex; flex-direction: column; align-items: center; padding: 50px;">
+                <p class="font-weight-bold fs-4"> [Título de la Medalla]</p>
+                <section class="SeccionMedallas col-md-6">
+                    <p>
+                        <button class="btn btn-cabeza" id="BotonMedalla" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" onclick="incrementProgress()">
+                        <img id="button-image" src="Imagenes/FondoMedallas.png">
+                        </button>
+                    </p>
+                    <div style="min-height: 100px;">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body" style="width: 300px;">
+                                Info de la medalla...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="col-md-6 divprogress">
+                    <div class="progress progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >
+                        <div class="progress-bar" id="progress-bar1" style="width: 0%"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </section>
+</body>
+</html>
