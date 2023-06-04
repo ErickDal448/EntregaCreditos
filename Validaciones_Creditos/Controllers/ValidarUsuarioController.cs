@@ -13,7 +13,7 @@ namespace Validaciones_Creditos.Controllers
 
         [HttpGet]
         [Route("Validar-Usuario")]
-        public IActionResult ValidarGet([FromQuery] int numCuenta, [FromQuery] int nip)
+        public IActionResult ValidarGet([FromQuery] string numCuenta, [FromQuery] string nip)
         {
             Contexto db = new Contexto();
             var numCuentaParam = new SqlParameter("@numCuenta", numCuenta);

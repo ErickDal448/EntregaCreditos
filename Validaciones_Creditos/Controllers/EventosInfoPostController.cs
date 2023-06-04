@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Validaciones_Creditos.Models;
+using Validaciones_Creditos.Models.Views;
 
 namespace Validaciones_Creditos.Controllers
 {
@@ -12,7 +13,7 @@ namespace Validaciones_Creditos.Controllers
         private readonly Contexto _context;
 
         public EventosInfoPostController(Contexto context)
-        {
+        { 
             _context = context;
         }
 

@@ -61,29 +61,19 @@
    <section class="container-fluid" id="section-info-inicio">
     <div class="card" id="card-eventos">
         <section class="filtrosCertificado" id="Field1CertificadosEdit">
-              <select class="form-select form-select-lg mb-3 bg-pulsar text-fondo col-md-6" aria-label=".form-select-lg example" style="font-weight: 600; border-radius: 60px;">
+              <select class="form-select form-select-lg mb-3 bg-pulsar text-fondo col-md-6" aria-label=".form-select-lg example" style="font-weight: 600; border-radius: 60px;" id="SeleccionFiltrosCertificados">
+                <option value="0">Seleccione que certificados ver...</option>
                 <option value="1">Certificados Por Revisar</option>
                 <option value="2">Certificados Revisados</option>
               </select>
         </section>
 
         <section class="Eventos-ListaSimple">
-            <div onclick="MostrarInfo()" class="card" id="card-lista-eventosSimple">
-                <div class="col-md-11" data-id="valorID" id="lista-info-eventoSimple">
-                    <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosEventos">Titulo</li>
-                        <li class="list-group-item VariablesEventos text-break">{Titulo}123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
-                    </ul>
-                    <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosEventos">Fecha</li>
-                        <li class="list-group-item VariablesEventos text-break">20/05/23<br>16:00</li>
-                    </ul>
-                    <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosEventos">Estado</li>
-                        <li class="list-group-item VariablesEventos text-break">Aceptado</li>
-                    </ul>
-                </div>
+            <div class="card" id="card-lista-eventosSimple">
+                
             </div>
+
+
         </section>
 
         <section class="EventosTablas" id="Field1-5CertificadosEdit" style="display: none;"> 
@@ -98,15 +88,15 @@
                     <div class="badge bg-light text-wrap text-dark font-weight-bold fs-6" style="margin-bottom: 0px; border-radius: 50px;">
                         Ir al documento:
                     </div>
-                    <a href="https://www.google.com.mx/maps/place/Facultad+de+Inform%C3%A1tica+Culiac%C3%A1n/@24.8228459,-107.3826527,17z/data=!3m1!4b1!4m6!3m5!1s0x86bcd9f94c837fad:0xfa9e708bbd4d8e9!8m2!3d24.8228411!4d-107.3800778!16s%2Fg%2F1tgb7sy1" target="_blank" id="enlace-certificado" style="margin-top: 5px;">
+                    <a href="" target="_blank" id="enlace-drive" style="margin-top: 5px;">
                         <button class="btn btn-cabeza" id="BotonMapa" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
                                 <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
                               </svg>
                         </button>
                     </a>
-                    <div class="badge bg-pulsar text-wrap font-weight-bold fs-6" style="margin-bottom: 20px; border-radius: 50px;">
-                        Creditos: 0.5C.
+                    <div class="badge bg-pulsar text-wrap font-weight-bold fs-6" style="margin-bottom: 20px; border-radius: 50px;" id="EnvioCreditos">
+                        
                     </div>
                 </div>
                 
@@ -117,31 +107,119 @@
                     </div>
                     <ul class="list-group list-group-horizontal ">
                         <li class="list-group-item AtributosCertificados ">Estudiante</li>
-                        <li class="list-group-item VariablesCertificados">{Nombre}</li>
+                        <li class="list-group-item VariablesCertificados" id="EnvioEstudiante">{Nombre}</li>
                     </ul>
                     <ul class="list-group list-group-horizontal ">
                         <li class="list-group-item AtributosCertificados ">Titulo</li>
-                        <li class="list-group-item VariablesCertificados">{Titulo}</li>
+                        <li class="list-group-item VariablesCertificados" id="EnvioTitulo"></li>
                     </ul>
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item AtributosCertificados">Tipo</li>
-                        <li class="list-group-item VariablesCertificados">{Tipo}</li>
+                        <li class="list-group-item VariablesCertificados" id="EnvioNombreTC"></li>
                     </ul>
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item AtributosCertificados">Fecha</li>
-                        <li class="list-group-item VariablesCertificados">{Fecha}</li>
+                        <input type="datetime-local" class="form-control  VariablesCertificados" style="width: auto;border-bottom-left-radius: 0px;border-top-left-radius: 0px;" id="EnvioFecha" name="fecha-hora" readonly>
                     </ul>
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item AtributosCertificados">Estado</li>
-                        <li class="list-group-item VariablesCertificados">{Estado}</li>
+                        <li class="list-group-item VariablesCertificados" id="EnvioEstado"></li>
                     </ul>
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item AtributosCertificados">Comentario</li>
-                        <li class="list-group-item VariablesCertificados text-break">{Comentario} 123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
+                        <li class="list-group-item VariablesCertificados text-break" id="EnvioComentario"></li>
                     </ul>
                     
                 </div>
             </div>
+
+            <script>
+                let SelectElement = document.getElementById('SeleccionFiltrosCertificados');
+                SelectElement.addEventListener("change", function() {
+                    //Obtener filtro
+                    let filtro = SelectElement.value;
+                    if(filtro == "1" || filtro == "2"){
+                        if(filtro == "2"){
+                            filtro = "CertificadosYaRevisados";
+                        }
+                        if(filtro == "1"){
+                            filtro = "CertificadosPorRevisar";
+                        }
+                        // Obtener los datos de los eventos desde la API utilizando el filtro seleccionado
+                        fetch(`https://localhost:7220/api/Certificados/` + filtro + `?Institucion=${encodeURIComponent(localStorage.getItem('UserInstitucion'))}`)
+                        .then(response => response.json())
+                        .then(envios => {
+                            // Generar el contenido de la sección Eventos-ListaSimple
+                            let envioListaSimple = document.querySelector(".Eventos-ListaSimple");
+                            envioListaSimple.style.display = "block";
+                            envioListaSimple.innerHTML = "";
+        
+                            for (let envio of envios) {
+                                let envioElement = document.createElement("div");
+                                envioElement.className = "card";
+                                envioElement.id = "card-lista-eventosSimple";
+                                envioElement.onclick = function() {
+                                MostrarInfoCertificados(envio.idEnvio);
+                                console.log(envio.idEnvio);
+                                };
+                                envioElement.innerHTML = `
+                                <div class="col-md-11" data-id="${envio.idEnvio}" id="lista-info-eventoSimple">
+                                    <ul class="list-group list-group-horizontal ">
+                                        <li class="list-group-item AtributosEventos">Titulo</li>
+                                        <li class="list-group-item VariablesEventos text-break">${envio.tituloCertificado}</li>
+                                    </ul>
+                                    <ul class="list-group list-group-horizontal ">
+                                        <li class="list-group-item AtributosEventos">Fecha</li>
+                                        <li class="list-group-item VariablesEventos text-break">${envio.fecha}</li>
+                                    </ul>
+                                    <ul class="list-group list-group-horizontal ">
+                                        <li class="list-group-item AtributosEventos">Estado</li>
+                                        <li class="list-group-item VariablesEventos text-break">${envio.estado}</li>
+                                    </ul>
+                                </div>
+                                `;
+                                envioListaSimple.appendChild(envioElement);
+                            }
+                        });
+                    }
+                    
+                    if(filtro == "0"){
+                        let eventosListaSimple = document.querySelector(".Eventos-ListaSimple");
+                        eventosListaSimple.style.display = "none";
+                    }
+                });
+                var EnvioGlobal = 0;
+                function MostrarInfoCertificados(idEnvio) {
+                    document.getElementById("card-lista-eventosSimple").style.display = "none";
+                    Field1.style.display = 'none';
+                    Field1_5.style.display = "flex";
+                    // Obtener los detalles del evento con el ID especificado desde la API
+                    console.log(idEnvio + " Check");
+                    EnvioGlobal = idEnvio;
+                    fetch("https://localhost:7220/api/Certificados/CertificadosInfo?idEvento=" + idEnvio)
+                        .then(response => response.json())
+                        .then(envio => {
+            
+                            console.log(envio);
+                            // Mostrar la información detallada del evento
+                            let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+                            for (let element of listaSimpleElements) {
+                            element.style.display = "none";
+                            }
+                            document.getElementById("card-lista-eventos").style.display = "flex";
+            
+                            // Actualizar el contenido de la sección con la información detallada del evento
+                            document.getElementById("enlace-drive").href = envio[0].drive;
+                            document.getElementById("EnvioCreditos").textContent = "Creditos= " + envio[0].creditos;
+                            document.getElementById("EnvioTitulo").textContent = envio[0].tituloCertificado;
+                            document.getElementById("EnvioNombreTC").textContent = envio[0].nombreTC;
+                            document.getElementById("EnvioComentario").textContent = envio[0].comentario;
+                            document.getElementById("EnvioEstado").textContent = envio[0].estado;
+                            document.getElementById("EnvioFecha").value = envio[0].fecha;
+                            document.getElementById("EnvioEstudiante").textContent = envio[0].nombre + " " + envio[0].apellidos;
+                        });
+                }
+           </script>
         </section>
 
         <section class="EnviarCertificado" id="Field2CertificadosEdit" style="display: none">
@@ -157,20 +235,63 @@
                 
                 <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label font-weight-bold">Estado</label>
-                <select id="inputState" class="form-select bg-pulsar text-fondo">
+                <select id="seleccionEstado" class="form-select bg-pulsar text-fondo">
+                    <option value="0">Estado de certificado</option>
                     <option value="1">Aceptado</option>
-                    <option value="2">Denegado</option>
+                    <option value="2">Rechazado</option>
                 </select>
                 </div>
                 <label for="formGroupExampleInput" class="form-label font-weight-bold ">Comentario</label>
-                <textarea class="form-control" aria-label="With textarea" style="border-radius: 40px; background-color: antiquewhite; height: 150px;"></textarea>
+                <textarea class="form-control" aria-label="With textarea" style="border-radius: 40px; background-color: antiquewhite; height: 150px; padding: 10px;" id="PonerComentario"></textarea>
                 <div class="divBtnSendEnviarCert">
                     <button class="btn btn-cabeza text-fondo" id="btnSendPostCert"> 
                         ENVIAR
                     </button>
                 </div>
             </div>
-            
+            <script>
+                document.getElementById("btnSendPostCert").addEventListener("click", function() {
+                    // Obtener los valores de los campos del formulario
+                    let estado = document.getElementById("seleccionEstado").value;
+                    let comentario = document.getElementById("PonerComentario").value;
+
+                    if(estado == "1" || estado == "2")
+                    {
+                        if(estado == "1"){
+                            estado="Aceptado";
+                        }
+                        if(estado == "2"){
+                            estado = "Rechazado";
+                        }
+                        // Crear el objeto JSON con los datos a enviar
+                        let data = {
+                            estado: estado,
+                            comentario: comentario
+                        };
+
+                        // Enviar la solicitud PUT a la API
+                        fetch("https://localhost:7220/api/Certificados/ActualizarCertificadoEnviado?idEnvio=" + EnvioGlobal, {
+                            method: "PUT",
+                            headers: {
+                            "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log(data))
+                        .catch(error => console.error(error));
+
+                        Field2.style.display = 'none'; // cambia el valor de display a flex
+                        document.getElementById("card-lista-eventosSimple").style.display = "flex";
+                        Field1.style.display = 'flex';
+                        SelectElement.value = "0";
+                    }
+                    if(estado == "0"){
+                        alert("Favor de seleccionar el estado del certificado");
+                    }
+                });
+
+            </script>
         </section>
     </div>  
 </section>
@@ -184,7 +305,6 @@
     let Field2 = document.getElementById('Field2CertificadosEdit');
     let BtnEditar = document.getElementById('btnEditar');
     let Salir = document.getElementById('btnExitPostCert');
-    let Enviar =document.getElementById('btnSendPostCert');
 
     function MostrarInfo(){
         document.getElementById("card-lista-eventosSimple").style.display = "none";
@@ -195,6 +315,7 @@
         document.getElementById("card-lista-eventosSimple").style.display = "flex";
         Field1_5.style.display = "none";
         Field1.style.display = 'flex';
+        SelectElement.value = "0";
     }
 
     BtnEditar.addEventListener('click', () => {
@@ -205,13 +326,9 @@
 
     Salir.addEventListener('click', () => {
         Field2.style.display = 'none'; // cambia el valor de display a flex
-        document.getElementById("card-lista-eventosSimple").style.display = "flex";
-        Field1.style.display = 'flex';
-    });
-
-    Enviar.addEventListener('click', () => {
-        Field2.style.display = 'none'; // cambia el valor de display a flex
-        document.getElementById("card-lista-eventosSimple").style.display = "flex";
+        document.getElementById("card-lista-eventosSimple").style.display = "none";
+        Field1.style.display = 'none';
+        Field1_5.style.display = "flex";
     });
 </script>
 </body>

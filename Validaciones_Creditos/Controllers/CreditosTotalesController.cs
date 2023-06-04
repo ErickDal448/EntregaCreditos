@@ -10,6 +10,20 @@ namespace Validaciones_Creditos.Controllers
     [ApiController]
     public class CreditosTotalesController : ControllerBase
     {
+
+        [HttpPut("actualizarCreditosTotales/{numeroCuenta}")]
+        public IActionResult ActualizarCreditosTotales(string numeroCuenta)
+        {
+            using (var context = new Contexto())
+            {
+                // Ejecutar el procedimiento almacenado
+                context.Database.ExecuteSqlRaw("EXEC sp_ActualizarCreditosTotales @NumeroCuenta={0}", numeroCuenta);
+            }
+
+            return Ok();
+        }
+
+
         [HttpGet]
         [Route("api/CreditosTotales")]
         public IActionResult GetCreditos([FromQuery] string numCuenta)

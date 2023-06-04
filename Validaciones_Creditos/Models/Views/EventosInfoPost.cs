@@ -1,4 +1,4 @@
-﻿namespace Validaciones_Creditos.Models
+﻿namespace Validaciones_Creditos.Models.Views
 {
     public class EventosInfoPost
     {

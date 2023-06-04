@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\ErickDocuments\\Programacion de Servidores Web\\Validaciones_Creditos\\Validaciones_Creditos.csproj": {}
+    "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\ErickDocuments\\Programacion de Servidores Web\\Validaciones_Creditos\\Validaciones_Creditos.csproj": {
+    "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\ErickDocuments\\Programacion de Servidores Web\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
         "projectName": "Validaciones_Creditos",
-        "projectPath": "C:\\Users\\ASUS\\ErickDocuments\\Programacion de Servidores Web\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
+        "projectPath": "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\ErickDocuments\\Programacion de Servidores Web\\Validaciones_Creditos\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

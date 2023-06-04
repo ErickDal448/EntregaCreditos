@@ -32,11 +32,12 @@ Descripcion varchar(150),
 Fecha datetime,
 Estado varchar(20),
 Creditos decimal(10,2),
-Mapa varchar(100),
+Mapa varchar(8000),
 Institucion varchar(50)
 )
 
 create table EventosRealizados(
+idEventoRealizado int identity(1,1) primary key,
 idEvento int foreign key references Eventos(idEvento),
 NumUsuario varchar(10) foreign key references Usuarios(NumeroCuenta),
 )
@@ -49,14 +50,21 @@ TituloCertificado varchar(50),
 Fecha datetime default Getdate(), 
 Estado varchar(20),
 Comentario varchar(200),
-Drive varchar(100)
+Drive varchar(8000),
+Creditos decimal(10,2)
 ) 
 
 
 --Datos para Usuarios
 Insert into Usuarios (NumeroCuenta, Nip, Nombre, Apellidos, CreditosTotales, Rol, Institucion, Grado, Grupo, TopeCreditos)values 
 ('12345', '12345', 'Erick', 'Alba Leon', 26, 'Alumno', 'Licenciatura en Informática', 3, 3, 35),
+('12346', '12346', 'Bryan', 'Medrano', 26, 'Alumno', 'Licenciatura en Informática', 3, 3, 35),
+('12347', '12347', 'Elena', 'Sanchez', 26, 'Alumno', 'Licenciatura en Informática', 3, 1, 35),
+('12348', '12348', 'Kassandra', 'Pineda', 26, 'Alumno', 'Licenciatura en Informática', 3, 1, 35),
 ('23456', '34567', 'Joshua', 'Duarte Escareño', 13, 'Alumno', 'Licenciatura en Gastronomía', 4, 2, 40),
+('23457', '34568', 'Jesús Eduardo', 'Aguirre Burgeño', 13, 'Alumno', 'Licenciatura en Gastronomía', 4, 2, 40),
+('23458', '34569', 'Hector', 'Salazar', 13, 'Alumno', 'Licenciatura en Gastronomía', 4, 4, 40),
+('23459', '34560', 'Norberto', 'Arredondo', 13, 'Alumno', 'Licenciatura en Gastronomía', 4, 4, 40),
 ('34567', '45678', 'Randu', 'Quintero', 0, 'Editor', 'Licenciatura en Informática', 0, 0, 35),
 ('45678', '56789', 'Jorge', 'Fabian Felix', 0, 'Editor', 'Licenciatura en Gastronomía', 0, 0, 40),
 ('56789', '56789', 'Sergio Michel','Pérez Mendoza',0,'Editor','Licenciatura en Informática',0,0, 35)
@@ -106,13 +114,13 @@ Insert into TipoCertificado (Institucion, NombreTC, CreditosMax, CreditosValor) 
 
 --Eventos Realizados
 insert into EventosRealizados values
-(1, '12345'),
+(2, '12345'),
 (3, '45678')
 
 --Certificados enviados
-insert into CertificadosEnviados (idTipo, NumUsuario, TituloCertificado, Estado, Comentario, Drive) values
-(3, '12345','Certificado Cursos', 'Validado', 'Todo bien oiga', 'https://drive.google.com/file/d/17oL_42M0jQar6nNIZ-5pXK_Y86dJudFK/view?usp=sharing'),
-(2, '12345', 'Diplomado Finanzas','Enviado', '- - -', 'https://drive.google.com/file/d/17oL_42M0jQar6nNIZ-5pXK_Y86dJudFK/view?usp=sharing')
+insert into CertificadosEnviados (idTipo, NumUsuario, TituloCertificado, Estado, Comentario, Drive,Creditos) values
+(14, '12345','Certificado Cursos', 'Rechazado', 'Todo mal oiga', 'https://drive.google.com/file/d/17oL_42M0jQar6nNIZ-5pXK_Y86dJudFK/view?usp=sharing', 0.00),
+(2, '12345', 'Diplomado Finanzas','Pendiente', '- - -', 'https://drive.google.com/file/d/17oL_42M0jQar6nNIZ-5pXK_Y86dJudFK/view?usp=sharing', 0.00)
 
 -------------------------------------------------------
 --Instrucciones que se pueden utilizar
@@ -122,7 +130,7 @@ insert into CertificadosEnviados (idTipo, NumUsuario, TituloCertificado, Estado,
 Select * from Usuarios where Institucion = 'Licenciatura en gastronomía'
 Select * from Usuarios 
 select * from EventosRealizados
-Select * from Eventos
+select * from Eventos
 Select * from TipoCertificado
 select * from CertificadosEnviados
 
@@ -184,3 +192,51 @@ insert into Eventos (Nombre, Tipo, Descripcion, Fecha, Estado, Creditos, Mapa, I
 
 
 
+DECLARE @NumeroCuenta varchar(10) = '23456'; -- reemplaza 'valor' con el número de cuenta del usuario
+DECLARE @CreditosTotales decimal(10,2);
+
+SELECT @CreditosTotales = SUM(Creditos)
+FROM EventosRealizados ER
+JOIN Eventos E ON ER.idEvento = E.idEvento
+WHERE ER.NumUsuario = @NumeroCuenta;
+
+SELECT @CreditosTotales;
+
+
+DECLARE @CreditosTotales decimal(10,2);
+
+SELECT @CreditosTotales = SUM(Creditos)
+FROM EventosRealizados ER
+JOIN Eventos E ON ER.idEvento = E.idEvento
+WHERE ER.NumUsuario = '23456';
+
+SELECT @CreditosTotales;
+
+
+
+
+
+
+
+SELECT CHARACTER_MAXIMUM_LENGTH
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'CertificadosEnviados' AND COLUMN_NAME = 'Drive';
+
+
+
+
+
+SELECT SUM(Creditos)
+    FROM EventosRealizados ER
+    JOIN Eventos E ON ER.idEvento = E.idEvento
+    WHERE ER.NumUsuario = '23456';
+
+	    -- Calcular la suma de los créditos obtenidos por los certificados enviados
+    SELECT SUM(Creditos)
+    FROM CertificadosEnviados
+    WHERE NumUsuario = '23456';
+
+
+
+	ALTER TABLE Eventos
+ALTER COLUMN Mapa VARCHAR(8000);

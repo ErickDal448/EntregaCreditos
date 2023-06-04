@@ -245,32 +245,63 @@
                     <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                 </svg>
                 </button>
-                <h4 class="text-fondo text-center font-weight-bold" > Lista de asistencia del evento: {Titulo Evento}</h4>
-
+                <h4 class="text-fondo text-center font-weight-bold" id="TituloAsistencia"> Lista de asistencia del evento: {Titulo Evento}</h4>
+                <script>
+                    
+                </script>
             </div>
             
             <section style="margin-bottom: 20px; display: flex; align-items: center;">
                 <div class="col-md-5">
                     <label for="formGroupExampleInput2" class="form-label badge bg-fondo text-wrap font-weight-bold text-dark fs-6">Grado</label>
-                    <select id="inputState" class="form-select bg-pulsar text-fondo">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <select id="inputStateGrado" class="form-select bg-pulsar text-fondo">
+                        <option>Seleccione Grado</option>
                     </select>
                 </div>
                 <div class="col-md-5">
                     <label for="formGroupExampleInput2" class="form-label badge bg-fondo text-wrap font-weight-bold text-dark fs-6">Grupo</label>
-                    <select id="inputState" class="form-select bg-pulsar text-fondo">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select id="inputStateGrupo" class="form-select bg-pulsar text-fondo">
+                        <option>Seleccione Grupo</option>
                     </select>
                 </div>
-                
+                <script>
+                    function loadGrados() {
+                    const institucion = localStorage.getItem('UserInstitucion'); 
+                    fetch(`https://localhost:7220/api/MostrarAlumnosGradoGrupo/MostrarGrados/${institucion}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(institucion);
+                            const grados = data.map(item => item.grados); // Mapea el arreglo de objetos a un arreglo de grados
+                            console.log(grados);
+                            const selectGrado = document.querySelector('#inputStateGrado');
+                            for (const grado of grados) {
+                                const option = document.createElement('option');
+                                option.value = grado;
+                                option.textContent = grado;
+                                selectGrado.appendChild(option);
+                            }
+                        });
+                    }
+                    function loadGrupos() {
+                    const institucion = localStorage.getItem('UserInstitucion'); 
+                    fetch(`https://localhost:7220/api/MostrarAlumnosGradoGrupo/MostrarGrupos/${institucion}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(institucion);
+                            const grupos = data.map(item => item.grupos); // Mapea el arreglo de objetos a un arreglo de grados
+                            console.log(grupos);
+                            const selectGrado = document.querySelector('#inputStateGrupo');
+                            for (const grupo of grupos) {
+                                const option = document.createElement('option');
+                                option.value = grupo;
+                                option.textContent = grupo;
+                                selectGrado.appendChild(option);
+                            }
+                        });
+                    }
+                loadGrados();
+                loadGrupos();
+                </script>
             </section>
             <table class="table class text-fondo">
                 <thead class="text-wrap bg-pulsar text-dark">
@@ -281,33 +312,127 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row" class="Numlista">1</th>
-                    <td class="ListaNombreAlumno ">Alba Leon Erick Daniel</td>
-                    <td class="Asistencia"><input class="form-check-input bg-cancelar" type="checkbox" value=""></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="Numlista">2</th>
-                    <td class="ListaNombreAlumno ">Duarte Escareño Joshua Emanuel</td>
-                    <td class="Asistencia"><input class="form-check-input bg-cancelar" type="checkbox" value=""></td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="Numlista">3</th>
-                    <td class="ListaNombreAlumno ">Quintero Parra Jesús Randú</td>
-                    <td class="Asistencia">
-                        <input class="form-check-input bg-cancelar" type="checkbox">
-                    </td>
-                  </tr>
                 </tbody>
-              </table>
+            </table>
+            <div class="div-enviarsesion" >
+                <button class="btn btn-pulsar border-dark btn-normal" type="button" style="box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px; " id="EnviarLista" >Enviar Lista</button>
+            </div>
         </div>
+        <script>
+            async function getAlumnos(grado, grupo, institucion) {
+                const response = await fetch(`https://localhost:7220/api/MostrarAlumnosGradoGrupo/AlumnoGradoGrupo/${grado}/${grupo}/${institucion}`);
+                const data = await response.json();
+                return data;
+            }
+
+            function addCheckboxEventListeners() {
+                const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            this.classList.add('bg-pulsar');
+                            this.classList.remove('bg-cancelar');
+                        } else {
+                            this.classList.add('bg-cancelar');
+                            this.classList.remove('bg-pulsar');
+                        }
+                    });
+                });
+            }
+
+            function loadAlumnos() {
+                const selectGrado = document.querySelector('#inputStateGrado');
+                const grado = selectGrado.value;
+                const selectGrupo = document.querySelector('#inputStateGrupo');
+                const grupo = selectGrupo.value;
+                const institucion = localStorage.getItem('UserInstitucion'); 
+                fetch(`https://localhost:7220/api/MostrarAlumnosGradoGrupo/AlumnoGradoGrupo/${grado}/${grupo}/${institucion}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const alumnos = data;
+                        const tbody = document.querySelector('tbody');
+                        tbody.innerHTML = '';
+                        let count = 1;
+                        for (const alumno of alumnos) {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <th scope="row" class="Numlista">${count}</th>
+                                <td class="ListaNombreAlumno ">${alumno.nombre} ${alumno.apellidos}</td>
+                                <td class="Asistencia"><input class="form-check-input bg-cancelar" type="checkbox" value="${alumno.numeroCuenta}"></td>
+                            `;
+                            tbody.appendChild(tr);
+                            count++;
+                        }
+                        addCheckboxEventListeners(); // Agrega los controladores de eventos a los nuevos checkboxes
+                    });
+            }
+
+            document.querySelector('#inputStateGrado').addEventListener('change', loadAlumnos);
+            document.querySelector('#inputStateGrupo').addEventListener('change', loadAlumnos);
+
+        </script>
+
    </section>
 
    
    <script src="js/functions.js"></script>
-   
    <script>
+        var TipoPostEvento;
+    function regresar(){
+        document.getElementById("card-lista-eventosSimple").style.display = "flex";
+        document.getElementById("card-lista-eventos").style.display = "none";
+        document.getElementById("filtros").style.display = "block";
+        let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+        for (let element of listaSimpleElements) {
+        element.style.display = "block";
+        }
+    }
+    function MostrarPost(){
+        document.getElementById("card-lista-eventosSimple").style.display = "none";
+        document.getElementById("card-eventos-post").style.display = "flex";
+        document.getElementById("filtros").style.display = "none";
+        let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+        for (let element of listaSimpleElements) {
+        element.style.display = "none";
+        }
+        TipoPostEvento = "POST";
+        console.log(TipoPostEvento);
+    }  
+    function regresarPost(){
+        document.getElementById("card-lista-eventosSimple").style.display = "flex";
+        document.getElementById("card-eventos-post").style.display = "none";
+        document.getElementById("filtros").style.display = "block";
+        SelectElement.value = 0;
+    }
+    function EditPost(){
+        document.getElementById("card-lista-eventosSimple").style.display = "none";
+        document.getElementById("card-eventos-post").style.display = "flex";
+        document.getElementById("filtros").style.display = "none";
+        document.getElementById("card-lista-eventos").style.display = "none";
+        TipoPostEvento = "PUT";
+        console.log(TipoPostEvento);
+    }
+    function ListPost(){
+        document.getElementById("listaAsistencia").style.display = "flex";
+        document.getElementById("card-lista-eventos").style.display = "none";
+        document.getElementById("card-eventos").style.display = "none";
+    }
+    function regresarAsistencia(){
+        document.getElementById("listaAsistencia").style.display = "none";
+        document.getElementById("card-lista-eventos").style.display = "flex";
+        document.getElementById("card-eventos").style.display = "flex";
+
+    }
+
+    
+
+    
+    </script>
+
+
+    <script>
     let SelectElement = document.getElementById('SeleccionFiltros');
+    
     SelectElement.addEventListener("change", function() {
         //Obtener filtro
         let filtro = SelectElement.value;
@@ -390,9 +515,12 @@
                 eventosListaSimple.style.display = "none";
         }
     });
+    var IdEventoGlobal = 0;
     function MostrarInfo(idEvento) {
+        let Titulo = document.getElementById("TituloAsistencia");
     // Obtener los detalles del evento con el ID especificado desde la API
     console.log(idEvento + " Check");
+    IdEventoGlobal = idEvento;
     fetch("https://localhost:7220/api/InfoEventos/api/EventosInfo?IdEvento=" + idEvento)
         .then(response => response.json())
         .then(evento => {
@@ -415,6 +543,7 @@
             document.getElementById("EventoDescripcion").textContent = evento[0].descripcion;
             document.getElementById("EventoFecha").value = evento[0].fecha;
             
+            Titulo.textContent = "Lista de asistencia del evento: " + evento[0].nombre
         });
     }
     </script> 
@@ -426,92 +555,127 @@
         const inputMapa = document.querySelector('#FormEventoMapa');
         const inputFecha = document.querySelector('#FormEventoFecha');
         const inputCreditos = document.querySelector('#FormCantidadCreditos');
-
+        
         btnEnviar.addEventListener('click', () => {
+            let idEvento;
+            if (TipoPostEvento === "POST") {
+                idEvento = 0;
+            } else if (TipoPostEvento === "PUT") {
+                idEvento = IdEventoGlobal;
+            }
+
             const data = {
-                idEvento: 0,
+                idEvento: idEvento,
                 nombre: inputTitulo.value,
                 idTipo: selectTipoEvento.value,
-                nombreTc: selectTipoEvento.options[selectTipoEvento.selectedIndex].text,
                 descripcion: inputDescripcion.value,
-                mapa: inputMapa.value,
                 fecha: inputFecha.value,
-                estado: 'string',
+                estado: "none",
                 creditos: inputCreditos.value,
+                mapa: inputMapa.value,
                 institucion: (localStorage.getItem("UserInstitucion"))
             };
 
+        if (TipoPostEvento === "POST") {
+            // Enviar la información al servidor como un nuevo evento
             fetch('https://localhost:7220/api/EventosInfoPost/CrearEvento', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor
+                console.log("Creado con éxito");
+                regresarPost();
+            })
+            .catch(error => {
+                // Manejar el error
+                console.error(error);
+                regresarPost();
+            });
+        } else if (TipoPostEvento === "PUT") {
+            // Enviar la información actualizada al servidor
+            fetch(`https://localhost:7220/api/EventosInfoPost/EditarEvento/${IdEventoGlobal}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(text => {
+                console.log(text);
+                return JSON.parse(text);
+            })
+            .then(data => {
+                // Manejar la respuesta del servidor
+                console.log("Actualizado con éxito");
+                console.log(IdEventoGlobal);
+                regresarPost();
+            })
+            .catch(error => {
+                // Manejar el error
+                console.error(error);
+                regresarPost();
+            });
+        }
+        });
+    </script>  
+
+    <script>
+        const editButton = document.getElementById("btnEditar");
+        editButton.addEventListener('click', () =>{
+            const eventId = IdEventoGlobal;
+            fetch(`https://localhost:7220/api/EventosInfoPost/${eventId}`)
+            .then(response => response.json())
+            .then(evento => {
+                inputTitulo.value = evento.nombre,
+                selectTipoEvento.value = evento.idTipo,
+                selectTipoEvento.options[selectTipoEvento.selectedIndex].text = evento.nombreTc,
+                inputDescripcion.value = evento.descripcion,
+                inputMapa.value = evento.mapa,
+                inputFecha.value = evento.fecha,
+                inputCreditos.value = evento.creditos
+
+                
+            });
+        });
+    </script>
+
+
+        
+    <script>
+        document.querySelector('#EnviarLista').addEventListener('click', async function() {
+            // Obtener el valor del idEvento
+            const idEvento = IdEventoGlobal;
+
+            // Obtener los valores de los checkboxes seleccionados
+            const checkboxes = document.querySelectorAll('table input[type="checkbox"]:checked');
+            const numUsuarios = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+            // Enviar una solicitud POST para cada checkbox seleccionado
+            for (const numUsuario of numUsuarios) {
+                const eventoRealizado = {
+                idEvento,
+                numUsuario
+                };
+                const response = await fetch('https://localhost:7220/api/EventosRealizados/CrearEventoRealizadoDesdeVista', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Manejar la respuesta de la API
-                regresarPost()
-            });
+                body: JSON.stringify(eventoRealizado)
+                });
+                const data = await response.json();
+                console.log(data);
+                regresarAsistencia();
+            }
         });
-    </script>  
+    </script>
    <script>document.write('<script src="' + getBootstrapBundlePath() + '"><\/script>');</script>
-   <script>
-        function regresar(){
-            document.getElementById("card-lista-eventosSimple").style.display = "flex";
-            document.getElementById("card-lista-eventos").style.display = "none";
-            document.getElementById("filtros").style.display = "block";
-            let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
-            for (let element of listaSimpleElements) {
-            element.style.display = "block";
-            }
-        }
-        function MostrarPost(){
-            document.getElementById("card-lista-eventosSimple").style.display = "none";
-            document.getElementById("card-eventos-post").style.display = "flex";
-            document.getElementById("filtros").style.display = "none";
-        }  
-        function regresarPost(){
-            document.getElementById("card-lista-eventosSimple").style.display = "flex";
-            document.getElementById("card-eventos-post").style.display = "none";
-            document.getElementById("filtros").style.display = "block";
-        }
-        function EditPost(){
-            document.getElementById("card-lista-eventosSimple").style.display = "none";
-            document.getElementById("card-eventos-post").style.display = "flex";
-            document.getElementById("filtros").style.display = "none";
-            document.getElementById("card-lista-eventos").style.display = "none";
-        }
-        function ListPost(){
-            document.getElementById("listaAsistencia").style.display = "flex";
-            document.getElementById("card-lista-eventos").style.display = "none";
-            document.getElementById("card-eventos").style.display = "none";
-        }
-        function regresarAsistencia(){
-            document.getElementById("listaAsistencia").style.display = "none";
-            document.getElementById("card-lista-eventos").style.display = "flex";
-            document.getElementById("card-eventos").style.display = "flex";
-
-        }
-
-        // Obtener todos los elementos input de tipo checkbox
-        var checkboxes = document.querySelectorAll('table input[type="checkbox"]');
-
-        // Agregar un event listener a cada checkbox
-        checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            // Si el checkbox está activo, agregar la clase 'active' y eliminar la clase 'inactive'
-            if (this.checked) {
-            this.classList.add('bg-pulsar');
-            this.classList.remove('bg-cancelar');
-            }
-            // Si el checkbox está desactivo, agregar la clase 'inactive' y eliminar la clase 'active'
-            else {
-            this.classList.add('bg-cancelar');
-            this.classList.remove('bg-pulsar');
-            }
-        });
-        });
-   </script>
+   
 </body>
 </html>

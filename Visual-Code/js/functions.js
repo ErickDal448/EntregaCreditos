@@ -7,36 +7,8 @@ function getBootstrapBundlePath() {
   }
   return path;
 }
-/* enlace al apartado inicio */
-function goToOtherFile() {
-  // Obtener los valores ingresados por el usuario
-  let numCuenta = document.getElementById("InputNumCuenta1").value;
-  let nip = document.getElementById("NIP1").value;
 
-  // Verificar si los valores ingresados son válidos
-  if (numCuenta === "Alumno" && nip === "Alumno") {
-      // Si los valores son válidos, redirigir al usuario a otra página
-      let path = '/Inicio.html';
-      if (window.location.hostname === 'erickdal448.github.io') {
-          path = '/Proyecto-Creditos' + path;
-      }
-      window.location.href = path;
-  } 
-  else if(numCuenta === "Editor" && nip === "Editor"){
-    // Si los valores son válidos, redirigir al usuario a otra página
-    let path = '/InicioEditor.html';
-    if (window.location.hostname === 'erickdal448.github.io') {
-        path = '/Proyecto-Creditos' + path;
-    }
-    window.location.href = path;
-  }
-  else {
-      // Si los valores no son válidos, mostrar un mensaje de error
-      alert("Número de cuenta o NIP incorrecto");
-  }
-}
-
-  function Validar(){
+function Validar(){
   var numCuenta = document.getElementById("InputNumCuenta1").value;
   var NIP = document.getElementById("NIP1").value;
 
@@ -47,27 +19,27 @@ function goToOtherFile() {
   .then(result => {
   // Procesar la respuesta de la API
   if (result.length > 0) {
-  // La cuenta del usuario es válida
-  console.log("exist");
-  console.log(result[0].rol);
-  UserInstitucion = result[0].institucion;
-  console.log(UserInstitucion);
-  if(result[0].rol === "Alumno"){
-      console.log(result[0].rol);
-      let path = '/Inicio.html';
-      window.location.href = path;
-  }
-  if(result[0].rol === "Editor"){
-      console.log(result[0].rol);
-      let path = '/InicioEditor.html';
-      window.location.href = path; 
-  }
-  // Dentro de la función Validar, después de obtener los datos de la API
-  localStorage.setItem('UserNumCuenta', numCuenta);
-  localStorage.setItem('UserInstitucion', result[0].institucion);
-  localStorage.setItem('UserRol', result[0].rol);
-  localStorage.setItem('UserName', result[0].nombre);
-  localStorage.setItem('UserApellidos', result[0].apellidos);
+    // La cuenta del usuario es válida
+    console.log("exist");
+    console.log(result[0].rol);
+    UserInstitucion = result[0].institucion;
+    console.log(UserInstitucion);
+    if(result[0].rol === "Alumno"){
+        console.log(result[0].rol);
+        let path = '/Inicio.html';
+        window.location.href = path;
+    }
+    if(result[0].rol === "Editor"){
+        console.log(result[0].rol);
+        let path = '/InicioEditor.html';
+        window.location.href = path; 
+    }
+    // Dentro de la función Validar, después de obtener los datos de la API
+    localStorage.setItem('UserNumCuenta', numCuenta);
+    localStorage.setItem('UserInstitucion', result[0].institucion);
+    localStorage.setItem('UserRol', result[0].rol);
+    localStorage.setItem('UserName', result[0].nombre);
+    localStorage.setItem('UserApellidos', result[0].apellidos);
   } else {
   // La cuenta del usuario no es válida
   // Mostrar un mensaje de error al usuario
@@ -128,6 +100,7 @@ function actualizarBarraDeProgreso() {
   if(Porcentaje == 0){
   pathMed = '/Imagenes/FondoMedallas.png'
   document.getElementById("progress-bar1").style.backgroundColor = '#6c6d6c';
+  InfoMedalla.textContent = "Nada como empezar a hacer actividades no...";
   }
   else if (Porcentaje <= 20) {
       pathMed = '/Imagenes/MedallaGen1.png';
@@ -155,6 +128,6 @@ function actualizarBarraDeProgreso() {
 // Ejecutar la función actualizarBarraDeProgreso cuando la página se cargue
 window.onload = actualizarBarraDeProgreso;
 // Ejecutar la función actualizarBarraDeProgreso cada 5 segundos
-setInterval(actualizarBarraDeProgreso, 1000);
+
 
  

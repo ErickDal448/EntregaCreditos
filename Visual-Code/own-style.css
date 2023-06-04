@@ -261,17 +261,17 @@ input[type="text"], input[type="password"]{
         font-weight: bold;
         font-size: 20px;
     }
-    #enlace-certificado{
+    #enlace-drive{
         margin:20px;  
     }
-    #enlace-certificado button{
+    #enlace-drive button{
         border-radius: 40px;
         align-items: center;
         justify-content: center;
         width: 150px;
         height: 150px;
     }
-    #enlace-certificado svg{
+    #enlace-drive svg{
         width: 70%;
         height: 70%;
     }

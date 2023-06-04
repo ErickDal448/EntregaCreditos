@@ -11,7 +11,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
+    <script src="js/functions.js"></script>
+    <script>
+        const numeroCuenta = localStorage.getItem("UserNumCuenta");
+        const url = `https://localhost:7220/api/CreditosTotales/actualizarCreditosTotales/${numeroCuenta}`;
 
+        fetch(url, {
+            method: 'PUT'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Créditos totales actualizados correctamente');
+            } else {
+                console.log('Error al actualizar los créditos totales');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        setInterval(actualizarBarraDeProgreso, 1000);
+    </script>
     
     
 </head>
@@ -125,7 +145,7 @@
             </table>
             <script src="js/functions.js"></script>
             <script>
-                console.log("Si jalo");
+                console.log("Si funciono");
                 console.log(localStorage.getItem('UserInstitucion'));
                 fetch(`https://localhost:7220/api/TablaCreditos/api/TablaCertificados?institucion=${encodeURIComponent(localStorage.getItem('UserInstitucion'))}`)
                 .then(response => response.json())

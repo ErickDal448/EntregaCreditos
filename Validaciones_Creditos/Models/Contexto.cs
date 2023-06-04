@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Validaciones_Creditos.Models.Views;
 
 namespace Validaciones_Creditos.Models;
 
@@ -20,6 +21,11 @@ public partial class Contexto : DbContext
     public virtual DbSet<TotalCreditosUser> TotalCreditosUsuarios { get; set; }
     public virtual DbSet<FiltroEvento> FiltroEventos { get; set; }
     public virtual DbSet<EventosInfoPost> InfoEventosPost { get; set; }
+    public virtual DbSet<MostrarAlumnosGradoGrupo> MostrarAlumnosGradoGrupo { get; set; }
+    public virtual DbSet<VerGrados> MostrarGradosPorInstitucion { get; set; }
+    public virtual DbSet<VerGrupos> MostrarGruposPorInstitucion { get; set; }
+    public virtual DbSet<VistaEventosRealizados> VistaEventosRealizados { get; set; }
+    public virtual DbSet<CertificadosFiltro> CertificadosFiltros { get; set; }
 
     public virtual DbSet<Evento> Eventos { get; set; }
 
@@ -28,6 +34,8 @@ public partial class Contexto : DbContext
     public virtual DbSet<TipoCertificado> TipoCertificados { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
+
+    public virtual DbSet<CertificadosEnviado> CertificadosEnviados { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -64,7 +72,7 @@ public partial class Contexto : DbContext
 
         modelBuilder.Entity<EventosRealizado>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.idEventoRealizado).HasName("PK__EventosR__392C802FD3102011");
 
             entity.Property(e => e.IdEvento).HasColumnName("idEvento");
             entity.Property(e => e.NumUsuario)
@@ -121,9 +129,40 @@ public partial class Contexto : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
         });
+        modelBuilder.Entity<CertificadosEnviado>(entity =>
+        {
+            entity.HasKey(e => e.IdEnvio).HasName("PK__Certific__527F831F07F0EED4");
+
+            entity.Property(e => e.IdEnvio).HasColumnName("idEnvio");
+            entity.Property(e => e.Creditos).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.Comentario)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Drive)
+                .HasMaxLength(400)
+                .IsUnicode(false);
+            entity.Property(e => e.Estado)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.Fecha)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IdTipo).HasColumnName("idTipo");
+            entity.Property(e => e.NumUsuario)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+            entity.Property(e => e.TituloCertificado)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
 
 
         modelBuilder.Entity<EventosInfoPost>().HasNoKey();
+        modelBuilder.Entity<MostrarAlumnosGradoGrupo>().HasNoKey();
+        modelBuilder.Entity<VerGrupos>().HasNoKey();
+        modelBuilder.Entity<VerGrados>().HasNoKey();
+        modelBuilder.Entity<VistaEventosRealizados>().HasNoKey();
+
 
         OnModelCreatingPartial(modelBuilder);
     }

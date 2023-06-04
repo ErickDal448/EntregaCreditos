@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Validaciones_Creditos.Models
+namespace Validaciones_Creditos.Models.Views
 {
     public class ValidarUsuario
     {
