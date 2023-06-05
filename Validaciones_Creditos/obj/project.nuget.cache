@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AS5/EIM1yhA/Cvwb7wyUmZau+TJucP2xFZVfipBuEQcV0tX+RerYiaIiRTFdgI9F3JA341YlQWXLVe9wsPwKIg==",
+  "dgSpecHash": "yas8htj/qevptKpoaec5xkd5X6JEPfG7Ay6O7d7KC3v57vgsOpOIlnZZ6fw7LmvDQztDhAc6bw76O071/ZUm5Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\ErickDocuments\\Innovacion y creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\ErickDocuments\\Innovacion-creatividad\\ProyectoTI-CreditosFinal\\Validaciones_Creditos\\Validaciones_Creditos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

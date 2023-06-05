@@ -26,6 +26,7 @@ public partial class Contexto : DbContext
     public virtual DbSet<VerGrupos> MostrarGruposPorInstitucion { get; set; }
     public virtual DbSet<VistaEventosRealizados> VistaEventosRealizados { get; set; }
     public virtual DbSet<CertificadosFiltro> CertificadosFiltros { get; set; }
+    public virtual DbSet<CreditosPorTipo> CreditosPorTipos { get; set; }
 
     public virtual DbSet<Evento> Eventos { get; set; }
 
@@ -63,7 +64,7 @@ public partial class Contexto : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Mapa)
-                .HasMaxLength(100)
+                .HasMaxLength(8000)
                 .IsUnicode(false);
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
@@ -139,7 +140,7 @@ public partial class Contexto : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false);
             entity.Property(e => e.Drive)
-                .HasMaxLength(400)
+                .HasMaxLength(8000)
                 .IsUnicode(false);
             entity.Property(e => e.Estado)
                 .HasMaxLength(20)
@@ -162,6 +163,7 @@ public partial class Contexto : DbContext
         modelBuilder.Entity<VerGrupos>().HasNoKey();
         modelBuilder.Entity<VerGrados>().HasNoKey();
         modelBuilder.Entity<VistaEventosRealizados>().HasNoKey();
+        modelBuilder.Entity<CreditosPorTipo>().HasNoKey();
 
 
         OnModelCreatingPartial(modelBuilder);

@@ -75,7 +75,7 @@
 
         <section class="Eventos-ListaSimple">
             <div class="card" id="card-lista-eventosSimple">
-               <h5 class="text-center" style="padding: 50px; font-weight: 700;" id="SeleccionMensaje">Favor de seleccionar un filtro para vizualizar sus certificados enviados</h5>
+               <h5 class="text-center" style="padding: 50px; font-weight: 700;" id="SeleccionMensaje">Favor de seleccionar un filtro para visualizar sus certificados enviados.</h5>
             </div>
         </section>
 
@@ -110,7 +110,7 @@
                     </div>
                    
                     <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosCertificados ">Titulo</li>
+                        <li class="list-group-item AtributosCertificados ">Título</li>
                         <li class="list-group-item VariablesCertificados" id="EnvioTitulo"></li>
                     </ul>
                     <ul class="list-group list-group-horizontal">
@@ -165,7 +165,7 @@
                                 envioElement.innerHTML = `
                                 <div class="col-md-11" data-id="${envio.idEnvio}" id="lista-info-eventoSimple">
                                 <ul class="list-group list-group-horizontal ">
-                                    <li class="list-group-item AtributosEventos">Titulo</li>
+                                    <li class="list-group-item AtributosEventos">Título</li>
                                     <li class="list-group-item VariablesEventos text-break">${envio.tituloCertificado}</li>
                                 </ul>
                                 <ul class="list-group list-group-horizontal ">
@@ -210,7 +210,7 @@
             
                             // Actualizar el contenido de la sección con la información detallada del evento
                             document.getElementById("enlace-drive").href = envio[0].drive;
-                            document.getElementById("EnvioCreditos").textContent = "Creditos= " + envio[0].creditos;
+                            document.getElementById("EnvioCreditos").textContent = "Créditos= " + envio[0].creditos;
                             document.getElementById("EnvioTitulo").textContent = envio[0].tituloCertificado;
                             document.getElementById("EnvioNombreTC").textContent = envio[0].nombreTC;
                             document.getElementById("EnvioComentario").textContent = envio[0].comentario;
@@ -233,8 +233,8 @@
                     </button>
                 </div>
                 <div class="mb-3">
-                    <label for="formCertificadoTitulo" class="form-label font-weight-bold">Titulo Certificado</label>
-                    <input type="text" class="form-control bg-pulsar text-fondo" id="formCertificadoTitulo" placeholder="Titulo">
+                    <label for="formCertificadoTitulo" class="form-label font-weight-bold">Título Certificado</label>
+                    <input type="text" class="form-control bg-pulsar text-fondo" id="formCertificadoTitulo" placeholder="Título">
                 </div>
                 <div class="mb-3">
                     <label for="FormCertificadoTipoEvento" class="form-label font-weight-bold">Tipo Certificado</label>

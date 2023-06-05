@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creditos-Eventos</title>
+    <title>Créditos-Eventos</title>
 
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="own-style.css"/>
@@ -65,8 +65,8 @@
         <div class="card" id="card-eventos">
             <section class="filtros">
                   <select class="form-select form-select-lg mb-3 bg-pulsar text-fondo" aria-label=".form-select-lg example" style="font-weight: 600; border-radius: 60px;" id="SeleccionFiltros">
-                    <option value="0">Favor de seleccionar filtro</option>
-                    <option value="1">Eventos Proximos</option>
+                    <option value="0">Favor de seleccionar un filtro</option>
+                    <option value="1">Eventos Próximos</option>
                     <option value="2">Eventos Pasados</option>
                     <option value="3">Eventos Realizados</option>
                   </select>
@@ -76,7 +76,7 @@
                 <div class="card" id="card-lista-eventosSimple">
                     <div class="col-md-11" data-id="valorID" id="lista-info-eventoSimple">
                         <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item AtributosEventos">Título</li>
                             <li class="list-group-item VariablesEventos text-break">{Titulo}123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
                         </ul>
                         <ul class="list-group list-group-horizontal ">
@@ -104,14 +104,14 @@
                             </button>
                         </a>
                         <div class="badge bg-pulsar text-wrap font-weight-bold fs-6" style="margin-bottom: 20px; border-radius: 50px;" id="EventoCreditos">
-                            Creditos: 0.5C.
+                            Créditos: 0.5C.
                         </div>
                     </div>
                     
 
                     <div class="col-md-9" id="lista-info-evento">
                         <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos ">Titulo</li>
+                            <li class="list-group-item AtributosEventos ">Título</li>
                             <li class="list-group-item VariablesEventos" Id="EventoTitulo">{Titulo}</li>
                         </ul>
                         <ul class="list-group list-group-horizontal">
@@ -165,7 +165,7 @@
                         eventoElement.innerHTML = `
                         <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
                             <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item AtributosEventos">Título</li>
                             <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
                             </ul>
                             <ul class="list-group list-group-horizontal ">
@@ -198,7 +198,7 @@
                         eventoElement.innerHTML = `
                         <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
                             <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item AtributosEventos">Título</li>
                             <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
                             </ul>
                             <ul class="list-group list-group-horizontal ">
@@ -234,7 +234,7 @@
 
                 // Actualizar el contenido de la sección con la información detallada del evento
                 document.getElementById("EventoEnlace-mapa").href = evento[0].mapa;
-                document.getElementById("EventoCreditos").textContent = "Creditos= " + evento[0].creditos;
+                document.getElementById("EventoCreditos").textContent = "Créditos= " + evento[0].creditos;
                 document.getElementById("EventoTitulo").textContent = evento[0].nombre;
                 document.getElementById("EventoTipo").textContent = evento[0].nombreTc;
                 document.getElementById("EventoDescripcion").textContent = evento[0].descripcion;

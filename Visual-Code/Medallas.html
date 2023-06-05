@@ -64,32 +64,142 @@
 
    <section class="container-fluid" id="section-info-inicio">
     
-   <div class="card" id="card-medallas-fondo" style="display: flex; align-items: center;">
-        <div class="card" id="card-medallas">
-            <section class="seccionMisMedallas" style="display: flex; flex-direction: column; align-items: center; padding: 50px;">
-                <p class="font-weight-bold fs-4"> [Título de la Medalla]</p>
-                <section class="SeccionMedallas col-md-6">
-                    <p>
-                        <button class="btn btn-cabeza" id="BotonMedalla" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" onclick="incrementProgress()">
-                        <img id="button-image" src="Imagenes/MedallaBloqueada.png">
-                        </button>
-                    </p>
-                    <div style="min-height: 100px;">
-                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <div class="card card-body" style="width: 300px;">
-                                Info de la medalla...
+   <div class="card bg-recuadro-front" id="card-medallas-fondo" style="display: flex; align-items: center;" >  
+        
+    </div>
+
+    <script>
+       function generarDivMedalla(index, nombreTipoCertificado, creditosTotales, topeCreditos) {
+            // Calcular el porcentaje de progreso
+            const porcentajeProgreso = (creditosTotales / topeCreditos) * 100;
+
+            // Determinar la imagen del botón
+            const buttonImage = creditosTotales >= topeCreditos ? 'Imagenes/MedallaGen5.png' : 'Imagenes/MedallaBloqueada.png';
+
+            // Generar ID únicos para el botón y el elemento div que debe colapsarse
+            const buttonId = `BotonMedalla${index}`;
+            const collapseId = `collapseWidthExample${index}`;
+
+            // Generar el contenido del div
+            const divContent = `
+                <div class="card" id="card-medallas">
+                    <section class="seccionMisMedallas" style="display: flex; flex-direction: column; align-items: center; padding: 50px;">
+                        <p class="font-weight-bold fs-4">${nombreTipoCertificado}</p>
+                        <section class="SeccionMedallas col-md-6">
+                            <p>
+                                <button class="btn btn-recuadro-fondo" id="${buttonId}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                                    <img id="button-image" src="${buttonImage}">
+                                </button>
+                            </p>
+                            <div style="min-height: 100px;">
+                                <div class="collapse collapse-horizontal" id="${collapseId}">
+                                    <div class="card card-body" style="width: 300px;">
+                                        Info de la medalla...
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="col-md-6 divprogress">
+                            <div class="progress progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="${porcentajeProgreso}" aria-valuemin="0" aria-valuemax="${topeCreditos}">
+                                <div class="progress-bar" id="progress-bar1" style="width: ${porcentajeProgreso}%"></div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <div class="col-md-6 divprogress">
-                    <div class="progress progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >
-                        <div class="progress-bar" id="progress-bar1" style="width: 0%"></div>
-                    </div>
+                    </section>
                 </div>
-            </section>
+            `;
+
+            return divContent;
+        }
+
+
+        async function obtenerDatos() {
+            const url = `https://localhost:7220/api/CreditosTotales/api/CreditosTotalesPorTipo?numCuenta=${encodeURIComponent(localStorage.getItem('UserNumCuenta'))}`;
+            console.log(url);
+            const data = await fetch(url)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error));
+
+                const container = document.getElementById('card-medallas-fondo');
+
+                // Generar y agregar el contenido del div para cada tipo de certificado
+                data.forEach((item, index) => {
+                    const divContent = generarDivMedalla(index, item.nombreTipoCertificado, item.creditosTotales, item.topeCreditos);
+                    container.innerHTML += divContent;
+                });
+        }
+        obtenerDatos();
+    </script>
+
+    
+    <div class="card bg-cabeza" id="card-Editor-Inicio">
+        <h4 id="institucionH4" style="color: azure; font-weight: 600;" class="color-fondo"></h4>
+        <h4 id="UserH4" style="color: azure; font-weight: 600; margin-bottom: 0px;" class="color-fondo"></h4>
+        <script>
+            let h4Institucion = document.getElementById('institucionH4');
+            h4Institucion.textContent = localStorage.getItem('UserInstitucion');
+            let h4User = document.getElementById('UserH4');
+            h4User.textContent = "[" + localStorage.getItem('UserNumCuenta') + "]";
+        </script>
+        <div class="card bg-cabeza" id="card-iniciarsesion-3">
+            <h4 class="text-fondo fs-10 font-weight-bold">¿Cuáles créditos tengo?</h4>
+            <table class="table class text-fondo" id="TablaCertificados">
+                <thead class="text-wrap bg-pulsar text-dark">
+                  <tr>
+                    <th scope="col" class="idTablaCreditos">#</th>
+                    <th scope="col" class="TiposTablaCreditos text-break">Tipos de créditos</th>
+                    <th scope="col"  class="UnidadesTabla">Tus Créditos</th>
+                    <th scope="col"  class="MaxTablaCreditos">Máximo</th>
+                  </tr>
+                </thead>
+            </table>
+            <script src="js/functions.js"></script>
+            <script>
+                fetch(`https://localhost:7220/api/CreditosTotales/api/CreditosTotalesPorTipo?numCuenta=${encodeURIComponent(localStorage.getItem('UserNumCuenta'))}`)
+                .then(response => response.json())
+                .then(data => {
+                // Obtener una referencia a la tabla
+                let table = document.getElementById('TablaCertificados');
+    
+                // Iterar sobre la lista de datos
+                data.forEach((item, index) => {
+                // Crear una nueva fila
+                let row = table.insertRow();
+    
+                // Crear celdas para cada columna
+                let cell1 = row.insertCell();
+                let cell2 = row.insertCell();
+                let cell3 = row.insertCell();
+                let cell4 = row.insertCell();
+    
+                  // Agregar clases a las celdas
+                cell1.classList.add('numerosTableId');
+                cell1.classList.add('bg-cabeza');
+                cell1.classList.add('color-fondo');
+    
+                cell2.classList.add('NombresTipos');
+                cell2.classList.add('bg-cabeza');
+    
+                cell3.classList.add('numerosTableUni');
+                cell3.classList.add('bg-cabeza');
+                cell3.classList.add('bg-cabeza');
+    
+                cell4.classList.add('numerosTableMax');
+                cell4.classList.add('bg-cabeza');
+                cell4.classList.add('bg-cabeza');
+                
+                // Llenar las celdas con los datos correspondientes
+                cell1.textContent = index + 1; // Número de línea
+                cell2.textContent = item.nombreTipoCertificado;
+                cell3.textContent = item.creditosTotales;
+                cell4.textContent = item.topeCreditos;
+                });
+                })
+                .catch(error => {
+                console.error('Error:', error);
+                });
+    
+            </script>
         </div>
-    </div>
     </section>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creditos-Certificados-Editor</title>
+    <title>Créditos-Certificados-Editor</title>
 
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="own-style.css"/> 
@@ -110,7 +110,7 @@
                         <li class="list-group-item VariablesCertificados" id="EnvioEstudiante">{Nombre}</li>
                     </ul>
                     <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosCertificados ">Titulo</li>
+                        <li class="list-group-item AtributosCertificados ">Título</li>
                         <li class="list-group-item VariablesCertificados" id="EnvioTitulo"></li>
                     </ul>
                     <ul class="list-group list-group-horizontal">
@@ -165,7 +165,7 @@
                                 envioElement.innerHTML = `
                                 <div class="col-md-11" data-id="${envio.idEnvio}" id="lista-info-eventoSimple">
                                     <ul class="list-group list-group-horizontal ">
-                                        <li class="list-group-item AtributosEventos">Titulo</li>
+                                        <li class="list-group-item AtributosEventos">Título</li>
                                         <li class="list-group-item VariablesEventos text-break">${envio.tituloCertificado}</li>
                                     </ul>
                                     <ul class="list-group list-group-horizontal ">
@@ -210,7 +210,7 @@
             
                             // Actualizar el contenido de la sección con la información detallada del evento
                             document.getElementById("enlace-drive").href = envio[0].drive;
-                            document.getElementById("EnvioCreditos").textContent = "Creditos= " + envio[0].creditos;
+                            document.getElementById("EnvioCreditos").textContent = "Créditos= " + envio[0].creditos;
                             document.getElementById("EnvioTitulo").textContent = envio[0].tituloCertificado;
                             document.getElementById("EnvioNombreTC").textContent = envio[0].nombreTC;
                             document.getElementById("EnvioComentario").textContent = envio[0].comentario;

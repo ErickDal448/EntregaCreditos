@@ -35,5 +35,17 @@ namespace Validaciones_Creditos.Controllers
                 return Ok(creditos);
             }
         }
+
+        [HttpGet]
+        [Route("api/CreditosTotalesPorTipo")]
+        public IActionResult GetCreditosPorTipo([FromQuery] string numCuenta)
+        {
+            using (var db = new Contexto())
+            {
+                var CuentaParam = new SqlParameter("@numeroCuenta", numCuenta);
+                var creditos = db.CreditosPorTipos.FromSqlRaw("EXEC sp_CreditosPorTipoCertificado @numeroCuenta", CuentaParam).ToList();
+                return Ok(creditos);
+            }
+        }
     }
 }

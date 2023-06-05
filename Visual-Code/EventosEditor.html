@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creditos-Eventos-Editor</title>
+    <title>Créditos-Eventos-Editor</title>
 
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="own-style.css"/>
@@ -66,10 +66,10 @@
    <section class="container-fluid" id="section-info-inicio">
         <div class="card" id="card-eventos">
             <section class="filtros" id="filtros">
-                <button class="btn btn-pulsar border-dark btn-small" id="BtnAggEvento" type="button" style="box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px; margin-bottom: 20px; " onclick="MostrarPost()">Agregar Evento</button>
+                <button class="btn btn-pulsar border-dark btn-small" id="BtnAggEvento" type="button" style="box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.25); border-radius: 40px; margin-bottom: 20px; " onclick="MostrarPostEvento()">Agregar Evento</button>
                 <select class="form-select form-select-lg mb-3 bg-pulsar text-fondo" aria-label=".form-select-lg example" style="font-weight: 600; border-radius: 60px;" id="SeleccionFiltros">
-                    <option value="0">Favor de seleccionar filtro</option>
-                    <option value="1">Eventos Proximos</option>
+                    <option value="0">Favor de seleccionar un filtro</option>
+                    <option value="1">Eventos Próximos</option>
                     <option value="2">Eventos Pasados</option>
                 </select>
             </section>
@@ -78,7 +78,7 @@
                 <div class="card" id="card-lista-eventosSimple">
                     <div class="col-md-11" data-id="valorID" id="lista-info-eventoSimple">
                         <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos">Titulo</li>
+                            <li class="list-group-item AtributosEventos">Título</li>
                             <li class="list-group-item VariablesEventos text-break">{Titulo}123456789012345678901234567890123456789012345678901234567890123456789012345678901234568790</li>
                         </ul>
                         <ul class="list-group list-group-horizontal ">
@@ -114,7 +114,7 @@
                     <div class="col-md-9" id="lista-info-evento">
                         <button class="btn btn-pulsar text-fondo" id="btnEditar" style="margin-bottom: 20px;" onclick="EditPost()"> Editar </button>
                         <ul class="list-group list-group-horizontal ">
-                            <li class="list-group-item AtributosEventos ">Titulo</li>
+                            <li class="list-group-item AtributosEventos ">Título</li>
                             <li class="list-group-item VariablesEventos" Id="EventoTitulo">{Titulo}</li>
                         </ul>
                         <ul class="list-group list-group-horizontal">
@@ -146,8 +146,8 @@
                             </svg>
                         </button>
                         <div class="mb-3">
-                            <label for="FormEventoTitulo " class="form-label"> Titulo </label>
-                            <input type="text" class="form-control " id="FormEventoTitulo" placeholder="Titulo">
+                            <label for="FormEventoTitulo " class="form-label"> Título </label>
+                            <input type="text" class="form-control " id="FormEventoTitulo" placeholder="Título">
                         </div>
                         <div class="mb-3">
                             <label for="FormEventoTipoEvento" class="form-label"> Tipos Evento </label>
@@ -185,7 +185,7 @@
                     <section id="section-eventos-post-img" style="display: flex; flex-direction: column; align-items: center;">
                         <img src="Imagenes/ImgCalendario.png">
                         <div class="mb-3">
-                            <label for="FormEventoDescripcion" class="form-label"> Cantidad Creditos </label>
+                            <label for="FormEventoDescripcion" class="form-label"> Cantidad Créditos </label>
                             <input type="number" step="0.01" min="0" class="form-control" id="FormCantidadCreditos" placeholder="0 C.">
                         </div>
  
@@ -308,7 +308,7 @@
                   <tr>
                     <th scope="col" class="Numlista">#</th>
                     <th scope="col" class="ListaNombreAlumno">Alumno</th>
-                    <th scope="col"  class="Asistencia">Asistio</th>
+                    <th scope="col"  class="Asistencia">Asistió</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -387,7 +387,7 @@
         element.style.display = "block";
         }
     }
-    function MostrarPost(){
+    function MostrarPostEvento(){
         document.getElementById("card-lista-eventosSimple").style.display = "none";
         document.getElementById("card-eventos-post").style.display = "flex";
         document.getElementById("filtros").style.display = "none";
@@ -463,7 +463,7 @@
                     eventoElement.innerHTML = `
                     <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
                         <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosEventos">Titulo</li>
+                        <li class="list-group-item AtributosEventos">Título</li>
                         <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
                         </ul>
                         <ul class="list-group list-group-horizontal ">
@@ -496,7 +496,7 @@
                     eventoElement.innerHTML = `
                     <div class="col-md-11" data-id="${evento.idEvento}" id="lista-info-eventoSimple">
                         <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item AtributosEventos">Titulo</li>
+                        <li class="list-group-item AtributosEventos">Título</li>
                         <li class="list-group-item VariablesEventos text-break">${evento.nombre}</li>
                         </ul>
                         <ul class="list-group list-group-horizontal ">
@@ -537,7 +537,7 @@
 
             // Actualizar el contenido de la sección con la información detallada del evento
             document.getElementById("EventoEnlace-mapa").href = evento[0].mapa;
-            document.getElementById("EventoCreditos").textContent = "Creditos= " + evento[0].creditos;
+            document.getElementById("EventoCreditos").textContent = "Créditos= " + evento[0].creditos;
             document.getElementById("EventoTitulo").textContent = evento[0].nombre;
             document.getElementById("EventoTipo").textContent = evento[0].nombreTc;
             document.getElementById("EventoDescripcion").textContent = evento[0].descripcion;

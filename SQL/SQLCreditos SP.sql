@@ -221,17 +221,38 @@ END
 
 -- Medallas --
 -- Creditos por medalla --
-create procedure CreditosPorTipo
-	@numUsuario varchar(20)
-As 
-begin
-	SELECT Usuarios.NumeroCuenta, Usuarios.Nombre, TipoCertificado.NombreTC, SUM(TipoCertificado.CreditosValor) AS Creditos
-	FROM CertificadosEnviados
-	INNER JOIN TipoCertificado ON CertificadosEnviados.idTipo = TipoCertificado.Id
-	INNER JOIN Usuarios ON CertificadosEnviados.NumUsuario = Usuarios.NumeroCuenta
-	where Usuarios.NumeroCuenta = @numUsuario
-	GROUP BY Usuarios.NumeroCuenta, Usuarios.Nombre, TipoCertificado.NombreTC;
-end
+ALTER PROCEDURE sp_CreditosPorTipoCertificado
+    @NumeroCuenta varchar(10)
+AS
+BEGIN
+    -- Calcular los créditos obtenidos por los eventos realizados
+    ;WITH CreditosEventos AS (
+        SELECT E.idTipo, SUM(E.Creditos) AS Creditos
+        FROM EventosRealizados ER
+        JOIN Eventos E ON ER.idEvento = E.idEvento
+        WHERE ER.NumUsuario = @NumeroCuenta
+        GROUP BY E.idTipo
+    ),
+    -- Calcular los créditos obtenidos por los certificados enviados
+    CreditosCertificados AS (
+        SELECT TC.Id, SUM(CE.Creditos) AS Creditos
+        FROM CertificadosEnviados CE
+        JOIN TipoCertificado TC ON CE.idTipo = TC.Id
+        WHERE CE.NumUsuario = @NumeroCuenta AND CE.Estado = 'Aceptado'
+        GROUP BY TC.Id
+    )
+    -- Calcular los créditos totales por tipo de certificado
+    SELECT @NumeroCuenta AS NumeroCuenta,
+           TC.Id AS IdTipoCertificado,
+           TC.NombreTC AS NombreTipoCertificado,
+           ISNULL(CE.Creditos, 0) + ISNULL(CC.Creditos, 0) AS CreditosTotales,
+           TC.CreditosMax AS TopeCreditos
+    FROM TipoCertificado TC
+    LEFT JOIN CreditosEventos CE ON TC.Id = CE.idTipo
+    LEFT JOIN CreditosCertificados CC ON TC.Id = CC.Id
+	WHERE ISNULL(CE.Creditos, 0) + ISNULL(CC.Creditos, 0) > 0;
+END;
+
 
 -- Pruebas de SP --
 Exec ValidarUsuario @numCuenta = '12345', @nip = '12345'
@@ -272,7 +293,7 @@ exec CertificadosEnviadosFiltro @numUsuario = '12345'
 
 exec CertificadosRevisados @numUsuario = '12345'
 
-exec CreditosPorTipo @numUsuario = '12345'
+exec sp_CreditosPorTipoCertificado @NumeroCuenta = '12345'
 
 exec CertificadosPorRevisar @institucion = 'Licenciatura en Informática'
 

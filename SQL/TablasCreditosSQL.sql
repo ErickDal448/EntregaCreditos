@@ -139,11 +139,11 @@ select * from CertificadosEnviados
 -- PUCHAR CON CUIDAOH --
 -- DE SER NECESARIO HAGA UNA COPIA ANTES --
 --Eliminar solo datos
-delete from Eventos
+delete from Eventos where idEvento < 4
 delete from Usuarios
 delete from TipoCertificado
-delete from EventosRealizados
-delete from CertificadosEnviados
+delete from EventosRealizados where idEvento = 3
+delete from CertificadosEnviados where idEnvio = 9
 --Eliminar todo
 drop table Usuarios
 drop table Eventos
