@@ -557,6 +557,27 @@
         const inputCreditos = document.querySelector('#FormCantidadCreditos');
         
         btnEnviar.addEventListener('click', () => {
+
+            const llenarTitulo = document.getElementById('FormEventoTitulo');
+            const llenarDescripcion = document.getElementById('FormEventoDescripcion');
+            const llenarMapa = document.getElementById('FormEventoMapa');
+            const llenarFecha = document.getElementById('FormEventoFecha');
+            const llenarCreditos = document.getElementById('FormCantidadCreditos');
+
+            // Verificar si alguno de los campos está vacío
+            if (!llenarTitulo.value || !llenarDescripcion.value || !llenarMapa.value || !llenarFecha.value ) {
+                // Si alguno de los campos está vacío, mostrar un mensaje de alerta al usuario
+                alert('Favor de llenar todos los apartados');
+                return false;
+            }
+
+            if(llenarCreditos.value == 0)
+            {
+                alert('Favor de llenar el apartado de tipos de creditos o darle valor al evento');
+                return false;
+            }
+
+
             let idEvento;
             if (TipoPostEvento === "POST") {
                 idEvento = 0;

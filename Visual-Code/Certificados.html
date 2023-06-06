@@ -296,23 +296,29 @@
     }
 
     BtnEditar.addEventListener('click', () => {
-        Field2.style.display = 'flex'; // cambia el valor de display a flex
+        Field2.style.display = 'flex'; 
         ////Field1.style.display = 'none';
         Field1_5.style.display = 'none';
         TipoEnvio = "PUT";
         console.log(TipoEnvio + ", " + EnvioGlobal);
+        mostrarInformacionCertificado(EnvioGlobal);
     });
 
     BtnEnviarCertificado.addEventListener('click', () => {
-        Field2.style.display = 'flex'; // cambia el valor de display a flex
+        Field2.style.display = 'flex'; 
         Field1_5.style.display = 'none';
         document.getElementById("card-lista-eventosSimple").style.display = "none";
         TipoEnvio = "POST";
         Field1.style.display = 'none';
+        let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
+            for (let element of listaSimpleElements) {
+            element.style.display = "none";
+            }
+        borrarInfoCertificadoPost();
     });
 
     Salir.addEventListener('click', () => {
-        Field2.style.display = 'none'; // cambia el valor de display a flex
+        Field2.style.display = 'none'; 
         document.getElementById("card-lista-eventosSimple").style.display = "flex";
         if(TipoEnvio == "PUT"){
             Field1_5.style.display = 'flex';
@@ -328,8 +334,8 @@
     const tituloCertificado = document.getElementById("formCertificadoTitulo").value;
     const idTipo = document.getElementById("FormCertificadoTipoEvento").value;
     const drive = document.getElementById("formCertificadoDrive").value;
-    Field2.style.display = 'none'; // cambia el valor de display a flex
-    document.getElementById("card-lista-eventosSimple").style.display = "flex";
+    regresar();
+    Field2.style.display = 'none'; 
     
 
     // Crear el objeto certificadoEnviado
@@ -380,6 +386,33 @@
         });
     }
     });
+
+
+    function mostrarInformacionCertificado(idEnvio) {
+        if (TipoEnvio === "PUT") {
+            fetch(`https://localhost:7220/api/Certificados/CertificadosInfo?idEvento=${idEnvio}`)
+            .then(response => response.json())
+            .then(data => {
+                let tituloCertificado = document.getElementById("formCertificadoTitulo");
+                let idTipo = document.getElementById("FormCertificadoTipoEvento");
+                let drive = document.getElementById("formCertificadoDrive");
+                // Actualizar los campos con la información obtenida
+                tituloCertificado.value = data[0].tituloCertificado;
+                idTipo.value = data[0].idTipo;
+                drive.value = data[0].drive;
+            });
+        }
+    }
+
+    function borrarInfoCertificadoPost (){
+        let tituloCertificado = document.getElementById("formCertificadoTitulo");
+        let idTipo = document.getElementById("FormCertificadoTipoEvento");
+        let drive = document.getElementById("formCertificadoDrive");
+        // Actualizar los campos con la información obtenida
+        tituloCertificado.value = "";
+        idTipo.value = "";
+        drive.value = "";
+    }
 
 </script>
 </body>
