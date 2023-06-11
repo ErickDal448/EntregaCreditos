@@ -1,7 +1,7 @@
 --// Procedimientos Almacenados de Creditos //-- 
 
 -- Validar Alumno/Editor
-alter PROCEDURE ValidarUsuario
+create PROCEDURE ValidarUsuario
     @numCuenta varchar(10),
     @nip varchar(10)
 AS
@@ -49,7 +49,7 @@ Begin
 END
 
 -- Calcular el total de creditos del alumno --
-alter PROCEDURE sp_ActualizarCreditosTotales
+create PROCEDURE sp_ActualizarCreditosTotales
     @NumeroCuenta varchar(10)
 AS
 BEGIN
@@ -84,7 +84,7 @@ END;
 
 
 -- Ver el total de creditos del alumno --
-alter procedure TotalCreditos 
+create procedure TotalCreditos 
 	@numeroCuenta varchar(20)
 AS
 BEGIN
@@ -92,44 +92,47 @@ BEGIN
 	where NumeroCuenta = @numeroCuenta;
 END
 
---Filtrar Eventos --
--- Eventos Pasados --
-create procedure EventosPasados 
-	@institucion varchar(50)
-AS 
-Begin 
-	SELECT E.*, TC.NombreTC
-    FROM Eventos E
-    JOIN TipoCertificado TC
-    ON E.idTipo = TC.Id
-	where Fecha < GETDATE()
-	and E.Institucion = @institucion;
-END
+							--Filtrar Eventos --
+							-- Eventos Pasados --
+							alter procedure EventosPasados 
+								@institucion varchar(50)
+							AS 
+							Begin 
+								SELECT E.*, TC.NombreTC
+								FROM Eventos E
+								JOIN TipoCertificado TC
+								ON E.idTipo = TC.Id
+								where Fecha < GETDATE()
+								and E.Institucion = @institucion
+								ORDER BY Fecha DESC;
+							END
 
---Eventos Proximos --
-Create procedure EventosProximos
-	@institucion varchar(50)
-AS 
-Begin 
-	SELECT E.*, TC.NombreTC
-    FROM Eventos E
-    JOIN TipoCertificado TC
-    ON E.idTipo = TC.Id
-	where Fecha >= GETDATE()
-	and E.Institucion = @institucion;
-END
+							--Eventos Proximos --
+							alter procedure EventosProximos
+								@institucion varchar(50)
+							AS 
+							Begin 
+								SELECT E.*, TC.NombreTC
+								FROM Eventos E
+								JOIN TipoCertificado TC
+								ON E.idTipo = TC.Id
+								where Fecha >= GETDATE()
+								and E.Institucion = @institucion
+								ORDER BY Fecha ASC;
+							END
 
--- Eventos realizados --
-create procedure EventosRealizadosFiltro
-	@numUsuario varchar(10)
-as 
-begin
-	SELECT E.*, TC.NombreTC
-    FROM Eventos E
-    JOIN TipoCertificado TC ON E.idTipo = TC.Id
-    JOIN EventosRealizados ER ON E.idEvento = ER.idEvento
-    WHERE ER.NumUsuario = @NumUsuario;
-END
+							-- Eventos realizados --
+							alter procedure EventosRealizadosFiltro
+								@numUsuario varchar(10)
+							as 
+							begin
+								SELECT E.*, TC.NombreTC
+								FROM Eventos E
+								JOIN TipoCertificado TC ON E.idTipo = TC.Id
+								JOIN EventosRealizados ER ON E.idEvento = ER.idEvento
+								WHERE ER.NumUsuario = @NumUsuario
+								ORDER BY Fecha DESC;
+							END
 
 --Informacion de eventos --
 create procedure InfoEventos 
@@ -145,7 +148,7 @@ END
 
 -- Certificados Filtros -- 
 -- Certificados Info --
-alter procedure CertificadosInfo
+create procedure CertificadosInfo
 	@idEnvio int
 as 
 begin
@@ -158,70 +161,74 @@ begin
 	where CE.idEnvio = @idEnvio
 end
 
--- Certificados Enviados (Usuarios) --
-alter procedure CertificadosEnviadosFiltro 
-	@numUsuario varchar(10)
-as 
-begin
-	select CE.*, TC.NombreTC, U.Nombre, U.Apellidos
-	from CertificadosEnviados CE
-	JOIN TipoCertificado TC
-	ON CE.idTipo = TC.Id
-	join Usuarios U
-	ON CE.NumUsuario = U.NumeroCuenta
-	where CE.Estado = 'Pendiente'
-	and CE.NumUsuario = @numUsuario
-end
+						-- Certificados Enviados (Usuarios) --
+						alter procedure CertificadosEnviadosFiltro 
+							@numUsuario varchar(10)
+						as 
+						begin
+							select CE.*, TC.NombreTC, U.Nombre, U.Apellidos
+							from CertificadosEnviados CE
+							JOIN TipoCertificado TC
+							ON CE.idTipo = TC.Id
+							join Usuarios U
+							ON CE.NumUsuario = U.NumeroCuenta
+							where CE.Estado = 'Pendiente'
+							and CE.NumUsuario = @numUsuario
+							ORDER BY Fecha DESC;
+						end
 
--- Certificados Revisados (Usuarios) --
-alter PROCEDURE CertificadosRevisados 
-    @numUsuario varchar(10)
-AS 
-BEGIN
-    SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
-    FROM CertificadosEnviados CE
-    JOIN TipoCertificado TC
-    ON CE.idTipo = TC.Id
-	join Usuarios U
-	ON CE.NumUsuario = U.NumeroCuenta
-    WHERE (CE.Estado = 'Aceptado' OR CE.Estado = 'Rechazado')
-    AND CE.NumUsuario = @numUsuario
-END
+						-- Certificados Revisados (Usuarios) --
+						alter PROCEDURE CertificadosRevisados 
+							@numUsuario varchar(10)
+						AS 
+						BEGIN
+							SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
+							FROM CertificadosEnviados CE
+							JOIN TipoCertificado TC
+							ON CE.idTipo = TC.Id
+							join Usuarios U
+							ON CE.NumUsuario = U.NumeroCuenta
+							WHERE (CE.Estado = 'Aceptado' OR CE.Estado = 'Rechazado')
+							AND CE.NumUsuario = @numUsuario
+							ORDER BY Fecha DESC;
+						END
 
--- Certificados Por Revisar (Editor) -- 
-alter procedure CertificadosPorRevisar 
-	@institucion varchar(50)
-AS 
-BEGIN
-    SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
-    FROM CertificadosEnviados CE
-    JOIN TipoCertificado TC
-    ON CE.idTipo = TC.Id
-	join Usuarios U
-	ON CE.NumUsuario = U.NumeroCuenta
-    WHERE CE.Estado = 'Pendiente'
-    AND TC.Institucion = @institucion
-END
+						-- Certificados Por Revisar (Editor) -- 
+						alter procedure CertificadosPorRevisar 
+							@institucion varchar(50)
+						AS 
+						BEGIN
+							SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
+							FROM CertificadosEnviados CE
+							JOIN TipoCertificado TC
+							ON CE.idTipo = TC.Id
+							join Usuarios U
+							ON CE.NumUsuario = U.NumeroCuenta
+							WHERE CE.Estado = 'Pendiente'
+							AND TC.Institucion = @institucion
+							ORDER BY Fecha ASC;
+						END
 
--- Certificados Revisados (Editor) --
-alter procedure CertificadosRevisadosEditor
-	@institucion varchar(50)
-AS 
-BEGIN
-    SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
-    FROM CertificadosEnviados CE
-    JOIN TipoCertificado TC
-    ON CE.idTipo = TC.Id
-	join Usuarios U
-	ON CE.NumUsuario = U.NumeroCuenta
-    WHERE (CE.Estado = 'Aceptado' OR CE.Estado = 'Rechazado')
-    AND TC.Institucion = @institucion
-END
+						-- Certificados Revisados (Editor) --
+						alter procedure CertificadosRevisadosEditor
+							@institucion varchar(50)
+						AS 
+						BEGIN
+							SELECT CE.*, TC.NombreTC, U.Nombre, U.Apellidos
+							FROM CertificadosEnviados CE
+							JOIN TipoCertificado TC
+							ON CE.idTipo = TC.Id
+							join Usuarios U
+							ON CE.NumUsuario = U.NumeroCuenta
+							WHERE (CE.Estado = 'Aceptado' OR CE.Estado = 'Rechazado')
+							AND TC.Institucion = @institucion
+							ORDER BY Fecha DESC;
+						END
 
 
 -- Medallas --
 -- Creditos por medalla --
-ALTER PROCEDURE sp_CreditosPorTipoCertificado
+create PROCEDURE sp_CreditosPorTipoCertificado
     @NumeroCuenta varchar(10)
 AS
 BEGIN

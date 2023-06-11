@@ -231,6 +231,7 @@
                 element.style.display = "none";
                 }
                 document.getElementById("card-lista-eventos").style.display = "flex";
+                SelectElement.style.display = "none";
 
                 // Actualizar el contenido de la sección con la información detallada del evento
                 document.getElementById("EventoEnlace-mapa").href = evento[0].mapa;
@@ -249,6 +250,7 @@
    <script>  
         function regresar(){
             document.getElementById("card-lista-eventosSimple").style.display = "flex";
+            SelectElement.style.display = "flex";
             document.getElementById("card-lista-eventos").style.display = "none";
             let listaSimpleElements = document.querySelectorAll(".Eventos-ListaSimple");
             for (let element of listaSimpleElements) {
